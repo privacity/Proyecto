@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - TorNet</title>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-title">TorNet</div>
+        <a href="index.html" class="nav-btn btn-inicio">Inicio</a>
+    </header>
+
+    <div class="admin-container">
+
+        <!-- Cabecera ADMIN -->
+        <div class="admin-header">
+            <div class="admin-title">Administrador</div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Buscar">
+            </div>
+        </div>
+
+        <!-- Tabla de usuarios -->
+        <div class="section-title">Usuarios</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody id="tabla-usuarios">
+                
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-title">TorNet</div>
+        <div class="footer-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+        </div>
+    </footer>
+
+    <script>
+        
+    const usuarios = [
+        { id: "01", nombre: "Juan Pérez", correo: "juan@example.com", rol: "Usuario", estado: "Activo" },
+        { id: "02", nombre: "María Gómez", correo: "maria@example.com", rol: "Administrador", estado: "Inactivo" },
+        { id: "03", nombre: "Carlos Rodríguez", correo: "carlos@example.com", rol: "Usuario", estado: "Activo" }
+    ];
+
+    const tabla = document.getElementById("tabla-usuarios");
+
+    // Cargar tabla
+    function cargarUsuarios() {
+        usuarios.forEach(usuario => {
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${usuario.id}</td>
+                <td>${usuario.nombre}</td>
+                <td>${usuario.correo}</td>
+                <td>${usuario.rol}</td>
+                <td>${usuario.estado}</td>
+                <td>
+                    <a class="btn-editar" href="editUser.html" data-id="${usuario.id}">Editar</a>
+                    <a class="btn-eliminar" data-id="${usuario.id}">Eliminar</a>
+                </td>
+            `;
+
+            tabla.appendChild(tr);
+        });
+    }
+
+    cargarUsuarios();
+
+    tabla.addEventListener("click", function (e) {
+        if (e.target.classList.contains("btn-eliminar")) {
+            
+            const id = e.target.getAttribute("data-id");
+
+            const confirmar = confirm(`¿Seguro que deseas eliminar al usuario con ID ${id}?`);
+
+            if (confirmar) {
+
+                const index = usuarios.findIndex(u => u.id === id);
+                if (index !== -1) usuarios.splice(index, 1);
+
+                e.target.closest("tr").remove();
+
+                alert("El usuario fue eliminado correctamente.");
+            }
+        }
+    });
+    </script>
+</body>
+</html>
