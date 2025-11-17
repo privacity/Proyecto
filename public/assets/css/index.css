@@ -1,4 +1,6 @@
+
 :root {
+    --white: #ffffff;
     --primary-color: #385BFF;
     --secondary-color: #001166;
     --light-bg: #f8f9fc;
@@ -85,11 +87,7 @@ body {
     letter-spacing: 2px;
 }
 
-/* Main Content */
-.main-content {
-    flex: 1;
-    padding: 3rem 0;
-}
+
 
 .section-title {
     color: var(--secondary-color);
@@ -187,35 +185,6 @@ body {
     margin-bottom: 0;
 }
 
-/* Footer Styles */
-.main-footer {
-    background-color: #000B42;
-    color: white;
-    padding: 2rem 0;
-    margin-top: auto;
-}
-
-.footer-content {
-    text-align: center;
-}
-
-.footer-logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.footer-description {
-    max-width: 500px;
-    margin: 0 auto 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-}
-
-.social-icons {
-    margin-bottom: 1.5rem;
-}
-
 .social-icons a {
     color: white;
     font-size: 1.5rem;
@@ -227,11 +196,6 @@ body {
 .social-icons a:hover {
     transform: translateY(-3px);
     color: var(--primary-color);
-}
-
-.contact-info {
-    margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
 }
 
 .contact-info div {
