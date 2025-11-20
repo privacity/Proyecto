@@ -3,6 +3,21 @@
     --secondary-color: #001166;
     --light-bg: #f8f9fc;
     --white: #ffffff;
+    --text-dark: #333333;
+    --text-medium: #5a5c69;
+    --text-light: #777777;
+    --border-color: #e3e6f0;
+    --edit-bg: #e8f4fd;
+    --edit-color: #0066cc;
+    --delete-bg: #fde8e8;
+    --delete-color: #cc0000;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -11,6 +26,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: var(--text-medium);
+    line-height: 1.6;
 }
 
 /* BOTONES DE NAVEGACIÓN - ESTILOS COMPARTIDOS */
@@ -31,6 +48,9 @@ body {
 .btn-inicio {
     background: rgba(255, 255, 255, 0.2);
     color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 .btn-inicio:hover {
@@ -58,10 +78,25 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
     color: white;
+}
+
+.header-title {
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 
 .nav-link {
@@ -86,6 +121,65 @@ body {
 .centered-form-container {
     width: 100%;
     max-width: 450px;
+}
+
+.admin-container {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.admin-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    width: 250px;
+    font-size: 0.9rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.search-box input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(56, 91, 255, 0.25);
+    outline: none;
+}
+
+.search-box::before {
+    content: "\f002";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    z-index: 1;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
 }
 
 .login-card {
@@ -187,11 +281,94 @@ body {
     border-radius: 0 0.35rem 0.35rem 0;
 }
 
-/* Footer Styles - Centered */
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+}
+
+thead {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-medium);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-medium);
+}
+
+tbody tr {
+    transition: background-color 0.2s;
+}
+
+tbody tr:hover {
+    background-color: rgba(56, 91, 255, 0.03);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Button Styles */
+.btn-editar, .btn-eliminar {
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.btn-editar {
+    background-color: var(--edit-bg);
+    color: var(--edit-color);
+}
+
+.btn-editar:hover {
+    background-color: #d1e9ff;
+    transform: translateY(-1px);
+}
+
+.btn-eliminar {
+    background-color: var(--delete-bg);
+    color: var(--delete-color);
+}
+
+.btn-eliminar:hover {
+    background-color: #ffd1d1;
+    transform: translateY(-1px);
+}
+
+/* Footer Styles */
 .main-footer {
     background-color: #000B42;
     color: white;
     padding: 2rem 0;
+    margin-top: auto;
+}
+
+.footer {
+    background-color: #000B42;
+    color: var(--white);
+    padding: 2rem 0;
+    text-align: center;
     margin-top: auto;
 }
 
@@ -200,6 +377,12 @@ body {
 }
 
 .footer-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.footer-title {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -216,15 +399,22 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.social-icons a {
+.footer-icons {
+    margin-top: 1rem;
+}
+
+.social-icons a,
+.footer-icons i {
     color: white;
     font-size: 1.5rem;
     margin: 0 0.75rem;
     transition: all 0.3s;
     display: inline-block;
+    cursor: pointer;
 }
 
-.social-icons a:hover {
+.social-icons a:hover,
+.footer-icons i:hover {
     transform: translateY(-3px);
     color: var(--primary-color);
 }
@@ -244,4 +434,65 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 1rem;
     margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+    }
+    
+    .admin-container {
+        padding: 1rem;
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .search-box input {
+        width: 100%;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    th, td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .btn-editar, .btn-eliminar {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-title {
+        font-size: 1.2rem;
+    }
+    
+    .admin-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    th, td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.8rem;
+    }
+    
+    .btn-editar, .btn-eliminar {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
 }
