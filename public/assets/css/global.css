@@ -3,17 +3,22 @@
     --secondary-color: #001166;
     --light-bg: #f8f9fc;
     --white: #ffffff;
+
     --text-dark: #333333;
     --text-medium: #5a5c69;
     --text-light: #777777;
+
     --border-color: #e3e6f0;
+
     --edit-bg: #e8f4fd;
     --edit-color: #0066cc;
     --delete-bg: #fde8e8;
     --delete-color: #cc0000;
 }
 
-/* Estilos generales */
+/******************************
+       RESETEOS GENERALES
+******************************/
 * {
     margin: 0;
     padding: 0;
@@ -28,29 +33,433 @@ body {
     min-height: 100vh;
     color: var(--text-medium);
     line-height: 1.6;
+    position: relative;
 }
 
-/* BOTONES DE NAVEGACIÓN - ESTILOS COMPARTIDOS */
-.nav-btn {
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://img.freepik.com/vector-gratis/fondo-futbol-degradado-dinamico_23-2149007789.jpg?semt=ais_hybrid&w=740&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.85;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/******************************
+             BOTONES
+******************************/
+.nav-btn,
+.btn-login,
+.btn-register,
+.btn-inicio,
+.btn-contacto {
     background: rgba(255, 255, 255, 0.2);
-    color: var(--white);
+    color: white;
     padding: 8px 18px;
     border-radius: 6px;
     font-weight: 600;
     text-decoration: none;
     box-shadow: 0 3px 8px rgba(0,0,0,0.25);
     transition: 0.2s ease-in-out;
-    margin-left: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-btn:hover,
+.btn-login:hover,
+.btn-inicio:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.btn-contacto:hover {
+    background: var(--white);
+    color: var(--primary-color);
+}
+
+.btn-register:hover {
+    background: white;
+    color: var(--secondary-color);
+}
+
+/******************************
+             HEADER
+******************************/
+.header,
+.main-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+.header-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.top-right-buttons {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    display: flex;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+/******************************
+            HERO SECTION
+******************************/
+.hero-section {
+    background:
+        linear-gradient(rgba(0, 11, 66, 0.7), rgba(56, 91, 255, 0.7)),
+        url('https://images.unsplash.com/photo-1556056504-5c7696c4c28d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1776&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-logo {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+}
+
+.hero-content {
+    z-index: 2;
+}
+
+/******************************
+            MAIN CONTENT
+******************************/
+.main-content {
+    flex: 1;
+    padding: 3rem 0;
+}
+
+.section-title {
+    color: var(--secondary-color);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    color: #D4D4D4;
+    font-style: italic;
+    font-size: 1.3rem;
+}
+
+/******************************
+           CARDS
+******************************/
+.card-custom {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 
+        0 0.25rem 1rem rgba(0,0,0,0.1),
+        0 0.15rem 1.75rem rgba(58, 59, 69, 0.15);
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    width: 300px;
+    display: block;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.card-custom:hover {
+    transform: scale(1.03);
+}
+
+.card-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.card-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.stats-card, 
+.tournament-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.15);
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.tournament-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.tournament-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+.tournament-title {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.tournament-info {
+    color: #6c757d;
+}
+
+/******************************
+        CHAMPION SECTION
+******************************/
+.champion-section {
+    background-color: rgba(56, 91, 255, 0.1);
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/******************************
+           STATS LIST
+******************************/
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+/******************************
+              TABLAS
+******************************/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.1);
+}
+
+thead {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-medium);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-medium);
+}
+
+tbody tr:hover {
+    background-color: rgba(56, 91, 255, 0.05);
+}
+
+/******************************
+         BOTONES ADMIN
+******************************/
+.btn-editar, .btn-eliminar {
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.btn-editar {
+    background-color: var(--edit-bg);
+    color: var(--edit-color);
+}
+
+.btn-eliminar {
+    background-color: var(--delete-bg);
+    color: var(--delete-color);
+}
+
+/******************************
+        SECCIÓN ADMIN
+******************************/
+.admin-container {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 1;
+}
+
+.admin-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-dark);
+}
+
+.text-muted {
+    color: var(--text-dark);
+    font-size: 1.3rem;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+}
+
+/******************************
+               FOOTER
+******************************/
+.footer,
+.main-footer {
+    background-color: #000B42;
+    color: var(--white);
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.footer-description {
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 0.75rem;
+    transition: all 0.3s;
+}
+
+.contact-info {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/******************************
+            RESPONSIVE
+******************************/
+@media (max-width: 768px) {
+    .main-content {
+        padding: 2rem 0;
+    }
+
+    .stats-card, .tournament-card {
+        padding: 1rem;
+    }
+
+    .hero-logo {
+        font-size: 3.5rem;
+    }
+
+    .hero-section {
+        height: 50vh;
+    }
+}
+
+/******************************************************************
+        🔵 CÓDIGO NUEVO AGREGADO A PETICIÓN DEL USUARIO 🔵
+******************************************************************/
+
+/* VARIABLES (ya existen — se mantienen, no duplicadas) */
+
+/* BODY (igual que el existente — no se duplica) */
+
+/* BOTONES DE NAVEGACIÓN - SOLO SE AGREGA LO FALTANTE */
+.nav-btn {
     display: inline-block;
+    margin-left: 10px;
 }
 
 /* Botón Inicio */
 .btn-inicio {
     background: rgba(255, 255, 255, 0.2);
     color: var(--white);
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
 }
 
 .btn-inicio:hover {
@@ -72,120 +481,22 @@ body {
 }
 
 /* Header Styles */
-.main-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
     color: white;
 }
 
-.header-title {
-    font-weight: 700;
-    font-size: 1.5rem;
-}
-
-.nav-link {
-    color: rgba(255, 255, 255, 0.9) !important;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-link:hover {
-    color: white !important;
-}
-
-/* Main Content - Centered */
-.main-content {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0;
-}
-
+/* Main Content Login */
 .centered-form-container {
     width: 100%;
     max-width: 450px;
 }
 
-.admin-container {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.admin-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text-dark);
-}
-
-.search-box {
-    position: relative;
-}
-
-.search-box input {
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: 0.5rem 1rem 0.5rem 2.5rem;
-    width: 250px;
-    font-size: 0.9rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.search-box input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(56, 91, 255, 0.25);
-    outline: none;
-}
-
-.search-box::before {
-    content: "\f002";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-light);
-    z-index: 1;
-}
-
-.section-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--text-dark);
-}
-
 .login-card {
     background-color: white;
     border-radius: 15px;
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.15);
     overflow: hidden;
 }
 
@@ -211,7 +522,7 @@ body {
     border: 2px solid #e3e6f0;
     border-radius: 10px;
     padding: 0.75rem 1rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .form-control:focus {
@@ -244,8 +555,8 @@ body {
 
 .register-link a {
     color: var(--primary-color);
-    text-decoration: none;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .register-link a:hover {
@@ -258,8 +569,6 @@ body {
 
 .invalid-feedback {
     display: none;
-    width: 100%;
-    margin-top: 0.25rem;
     font-size: 0.875rem;
     color: #e74a3b;
 }
@@ -281,218 +590,10 @@ body {
     border-radius: 0 0.35rem 0.35rem 0;
 }
 
-/* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: var(--white);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-}
-
-thead {
-    background-color: #f8f9fc;
-    border-bottom: 1px solid var(--border-color);
-}
-
-th {
-    padding: 1rem;
-    text-align: left;
-    font-weight: 600;
-    color: var(--text-medium);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-medium);
-}
-
-tbody tr {
-    transition: background-color 0.2s;
-}
-
-tbody tr:hover {
-    background-color: rgba(56, 91, 255, 0.03);
-}
-
-tr:last-child td {
-    border-bottom: none;
-}
-
-/* Button Styles */
-.btn-editar, .btn-eliminar {
-    border: none;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    margin-right: 0.5rem;
-    transition: all 0.3s;
-    font-weight: 500;
-}
-
-.btn-editar {
-    background-color: var(--edit-bg);
-    color: var(--edit-color);
-}
-
-.btn-editar:hover {
-    background-color: #d1e9ff;
-    transform: translateY(-1px);
-}
-
-.btn-eliminar {
-    background-color: var(--delete-bg);
-    color: var(--delete-color);
-}
-
-.btn-eliminar:hover {
-    background-color: #ffd1d1;
-    transform: translateY(-1px);
-}
-
-/* Footer Styles */
-.main-footer {
-    background-color: #000B42;
-    color: white;
-    padding: 2rem 0;
-    margin-top: auto;
-}
-
-.footer {
-    background-color: #000B42;
-    color: var(--white);
-    padding: 2rem 0;
-    text-align: center;
-    margin-top: auto;
-}
-
-.footer-content {
-    text-align: center;
-}
-
-.footer-logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.footer-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.footer-description {
-    max-width: 500px;
-    margin: 0 auto 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-}
-
-.social-icons {
-    margin-bottom: 1.5rem;
-}
-
-.footer-icons {
-    margin-top: 1rem;
-}
-
-.social-icons a,
-.footer-icons i {
-    color: white;
-    font-size: 1.5rem;
-    margin: 0 0.75rem;
-    transition: all 0.3s;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.social-icons a:hover,
-.footer-icons i:hover {
+/* Footer complementario */
+.social-icons a:hover {
     transform: translateY(-3px);
     color: var(--primary-color);
 }
 
-.contact-info {
-    margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
-}
 
-.contact-info div {
-    margin-bottom: 0.5rem;
-}
-
-.copyright {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1rem;
-    margin-top: 1rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header {
-        padding: 1rem;
-    }
-    
-    .admin-container {
-        padding: 1rem;
-    }
-    
-    .admin-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-    
-    .search-box input {
-        width: 100%;
-    }
-    
-    table {
-        display: block;
-        overflow-x: auto;
-    }
-    
-    th, td {
-        padding: 0.75rem 0.5rem;
-    }
-    
-    .btn-editar, .btn-eliminar {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-title {
-        font-size: 1.2rem;
-    }
-    
-    .admin-title {
-        font-size: 1.5rem;
-    }
-    
-    .section-title {
-        font-size: 1.1rem;
-    }
-    
-    th, td {
-        padding: 0.5rem 0.25rem;
-        font-size: 0.8rem;
-    }
-    
-    .btn-editar, .btn-eliminar {
-        display: block;
-        width: 100%;
-        margin-bottom: 0.5rem;
-        margin-right: 0;
-    }
-}
