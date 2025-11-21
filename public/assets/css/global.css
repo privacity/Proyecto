@@ -1,3 +1,6 @@
+/******************************
+         VARIABLES
+******************************/
 :root {
     --primary-color: #385BFF;
     --secondary-color: #001166;
@@ -14,6 +17,11 @@
     --edit-color: #0066cc;
     --delete-bg: #fde8e8;
     --delete-color: #cc0000;
+
+    --accent-color: #4CAF50;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --error-color: #dc3545;
 }
 
 /******************************
@@ -47,6 +55,7 @@ body::before {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background: linear-gradient(135deg, rgba(56, 91, 255, 0.1) 0%, rgba(0, 17, 102, 0.1) 100%);
     opacity: 0.85;
     z-index: -1;
     pointer-events: none;
@@ -199,14 +208,14 @@ body::before {
     transition: all 0.3s;
     cursor: pointer;
     border: none;
-    width: 300px;
+    width: 100%;
     display: block;
     text-decoration: none;
     z-index: 1;
 }
 
 .card-custom:hover {
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 
 .card-title {
@@ -382,6 +391,199 @@ tbody tr:hover {
     padding: 0.5rem 1rem 0.5rem 2.5rem;
 }
 
+/***********************
+       FORMULARIO
+***********************/
+.form-section {}
+
+.input-group {}
+
+.input-group-text {
+    background-color: var(--light-bg);
+    border: 2px solid var(--border-color);
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+    color: var(--text-medium);
+}
+
+.input-group .form-control {
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+}
+
+/***********************
+   SUBIDA DE ARCHIVOS
+***********************/
+.file-upload-container {}
+
+.file-upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+}
+
+.file-upload-area:hover,
+.file-upload-area.drag-over {
+    border-color: var(--primary-color);
+    background-color: rgba(56, 91, 255, 0.05);
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.upload-text {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.upload-hint {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.file-preview {
+    position: relative;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--light-bg);
+}
+
+.file-preview img {
+    max-width: 100%;
+    max-height: 120px;
+    border-radius: 5px;
+}
+
+.btn-remove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/***********************
+      BARRA LATERAL
+***********************/
+.info-sidebar {}
+
+.info-card {
+    background: var(--light-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.info-card h5 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-card li {
+    padding: 0.25rem 0;
+    color: var(--text-medium);
+    position: relative;
+    padding-left: 1rem;
+}
+
+.info-card li:before {
+    content: '•';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+.form-check {}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/***********************
+      BOTÓN PUBLICAR
+***********************/
+.btn-publish {
+    background: linear-gradient(135deg, var(--accent-color), #45a049);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.btn-publish:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(135deg, #45a049, #4CAF50);
+}
+
+/***********************
+          MODALES
+***********************/
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.15);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 1.5rem;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
 /******************************
                FOOTER
 ******************************/
@@ -440,17 +642,27 @@ tbody tr:hover {
     .hero-section {
         height: 50vh;
     }
+    
+    .admin-title {
+        font-size: 2rem;
+    }
+    
+    .header-buttons {
+        gap: 1rem;
+    }
+    
+    table {
+        font-size: 0.9rem;
+    }
+    
+    th, td {
+        padding: 0.75rem 0.5rem;
+    }
 }
 
 /******************************************************************
         🔵 CÓDIGO NUEVO AGREGADO A PETICIÓN DEL USUARIO 🔵
 ******************************************************************/
-
-/* VARIABLES (ya existen — se mantienen, no duplicadas) */
-
-/* BODY (igual que el existente — no se duplica) */
-
-/* BOTONES DE NAVEGACIÓN - SOLO SE AGREGA LO FALTANTE */
 .nav-btn {
     display: inline-block;
     margin-left: 10px;
@@ -595,5 +807,3 @@ tbody tr:hover {
     transform: translateY(-3px);
     color: var(--primary-color);
 }
-
-
