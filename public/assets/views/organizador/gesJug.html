@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanket - Estadísticas de Jugadores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="tanked.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="tanket-header">
+        <div class="header-content">
+            <div class="header-title">
+                <h1>TorNet</h1>
+                <p class="header-subtitle">Estadísticas de Jugadores</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-export" id="btn-export">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="tanket-main">
+        <div class="container-fluid">
+            <!-- Filtros y Búsqueda -->
+            <div class="filters-section">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-4">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" id="search-input" placeholder="Buscar jugador...">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select filter-select" id="team-filter">
+                            <option value="">Todos los equipos</option>
+                            <option value="Real FC">Real FC</option>
+                            <option value="Villanos">Villanos</option>
+                            <option value="American">American</option>
+                            <option value="CCD">CCD</option>
+                            <option value="SPARTANOS">SPARTANOS</option>
+                            <option value="Novatos">Novatos</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select filter-select" id="cards-filter">
+                            <option value="">Todas las tarjetas</option>
+                            <option value="amarilla">Con tarjetas amarillas</option>
+                            <option value="roja">Con tarjetas rojas</option>
+                            <option value="sin-tarjetas">Sin tarjetas</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn-filter" id="btn-filter">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
+                        <button class="btn-clear" id="btn-clear" style="display: none;">
+                            <i class="fas fa-times"></i> Limpiar
+                        </button>
+                    </div>
+                </div>
+                <div class="filter-info mt-2" id="filter-info" style="display: none;">
+                    <small class="text-muted" id="active-filters"></small>
+                </div>
+            </div>
+
+            <!-- Tabla de Estadísticas -->
+            <div class="stats-table-container">
+                <div class="table-responsive">
+                    <table class="stats-table" id="stats-table">
+                        <thead>
+                            <tr>
+                                <th class="col-name">
+                                    <i class="fas fa-user"></i> Nombre
+                                </th>
+                                <th class="col-team">
+                                    <i class="fas fa-users"></i> Equipo
+                                </th>
+                                <th class="col-goals">
+                                    <i class="fas fa-futbol"></i> Goles
+                                </th>
+                                <th class="col-cards">
+                                    <i class="fas fa-card"></i> Tarjetas
+                                </th>
+                                <th class="col-actions">
+                                    <i class="fas fa-cog"></i> Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr data-player="juan-perez" data-team="Real FC" data-cards="amarilla">
+                                <td class="player-name">
+                                    <div class="player-info">
+                                        <div class="player-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="player-details">
+                                            <span class="name">Juan Pérez</span>
+                                            <span class="position">Delantero</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="team-name">
+                                    <span class="team-badge real-fc">Real FC</span>
+                                </td>
+                                <td class="goals-count">
+                                    <span class="goals-badge">3</span>
+                                </td>
+                                <td class="cards-count">
+                                    <div class="cards-display">
+                                        <span class="card yellow-card">
+                                            <i class="fas fa-square"></i> 1
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="actions-cell">
+                                    <button class="btn-modify" data-player="juan-perez">
+                                        <i class="fas fa-edit"></i> Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr data-player="mario-lopez" data-team="Villanos" data-cards="roja">
+                                <td class="player-name">
+                                    <div class="player-info">
+                                        <div class="player-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="player-details">
+                                            <span class="name">Mario López</span>
+                                            <span class="position">Defensa</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="team-name">
+                                    <span class="team-badge villanos">Villanos</span>
+                                </td>
+                                <td class="goals-count">
+                                    <span class="goals-badge">7</span>
+                                </td>
+                                <td class="cards-count">
+                                    <div class="cards-display">
+                                        <span class="card red-card">
+                                            <i class="fas fa-square"></i> 1
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="actions-cell">
+                                    <button class="btn-modify" data-player="mario-lopez">
+                                        <i class="fas fa-edit"></i> Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr data-player="saul-torres" data-team="American" data-cards="sin-tarjetas">
+                                <td class="player-name">
+                                    <div class="player-info">
+                                        <div class="player-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="player-details">
+                                            <span class="name">Saul Torres</span>
+                                            <span class="position">Portero</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="team-name">
+                                    <span class="team-badge american">American</span>
+                                </td>
+                                <td class="goals-count">
+                                    <span class="goals-badge zero">0</span>
+                                </td>
+                                <td class="cards-count">
+                                    <span class="no-cards">-</span>
+                                </td>
+                                <td class="actions-cell">
+                                    <button class="btn-modify" data-player="saul-torres">
+                                        <i class="fas fa-edit"></i> Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr data-player="abel-flores" data-team="CCD" data-cards="amarilla">
+                                <td class="player-name">
+                                    <div class="player-info">
+                                        <div class="player-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="player-details">
+                                            <span class="name">Abel Flores</span>
+                                            <span class="position">Mediocampista</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="team-name">
+                                    <span class="team-badge ccd">CCD</span>
+                                </td>
+                                <td class="goals-count">
+                                    <span class="goals-badge">8</span>
+                                </td>
+                                <td class="cards-count">
+                                    <div class="cards-display">
+                                        <span class="card yellow-card">
+                                            <i class="fas fa-square"></i> 2
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="actions-cell">
+                                    <button class="btn-modify" data-player="abel-flores">
+                                        <i class="fas fa-edit"></i> Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr data-player="carlos-flores" data-team="SPARTANOS" data-cards="sin-tarjetas">
+                                <td class="player-name">
+                                    <div class="player-info">
+                                        <div class="player-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="player-details">
+                                            <span class="name">Carlos Flores</span>
+                                            <span class="position">Delantero</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="team-name">
+                                    <span class="team-badge spartanos">SPARTANOS</span>
+                                </td>
+                                <td class="goals-count">
+                                    <span class="goals-badge">6</span>
+                                </td>
+                                <td class="cards-count">
+                                    <span class="no-cards">-</span>
+                                </td>
+                                <td class="actions-cell">
+                                    <button class="btn-modify" data-player="carlos-flores">
+                                        <i class="fas fa-edit"></i> Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr data-player="javier-juarez" data-team="Novatos" data-cards="amarilla">
+                                <td class="player-name">
+                                    <div class="player-info">
+                                        <div class="player-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="player-details">
+                                            <span class="name">Javier Juarez</span>
+                                            <span class="position">Defensa</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="team-name">
+                                    <span class="team-badge novatos">Novatos</span>
+                                </td>
+                                <td class="goals-count">
+                                    <span class="goals-badge">2</span>
+                                </td>
+                                <td class="cards-count">
+                                    <div class="cards-display">
+                                        <span class="card yellow-card">
+                                            <i class="fas fa-square"></i> 1
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="actions-cell">
+                                    <button class="btn-modify" data-player="javier-juarez">
+                                        <i class="fas fa-edit"></i> Modificar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Paginación -->
+            <div class="pagination-section">
+                <div class="pagination-info" id="pagination-info">
+                    Mostrando 6 de 6 jugadores
+                </div>
+                <div class="pagination-controls">
+                    <button class="btn-pagination prev" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="pagination-page">Página 1</span>
+                    <button class="btn-pagination next" disabled>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="tanket-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Tanket</h3>
+                <p>Sistema de Gestión Deportiva</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Inicio</a>
+                <a href="#" class="footer-link">Equipos</a>
+                <a href="#" class="footer-link">Torneos</a>
+                <a href="#" class="footer-link">Contacto</a>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2024 Tanket. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Modificar Jugador -->
+    <div class="modal fade" id="modifyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modificar Estadísticas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="modifyForm">
+                        <div class="form-group">
+                            <label class="form-label">Jugador</label>
+                            <input type="text" class="form-control" id="modal-player-name" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Equipo</label>
+                            <input type="text" class="form-control" id="modal-player-team" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Goles</label>
+                                    <input type="number" class="form-control" id="modal-player-goals" min="0">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Tarjetas Amarillas</label>
+                                    <input type="number" class="form-control" id="modal-player-yellow" min="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tarjetas Rojas</label>
+                            <input type="number" class="form-control" id="modal-player-red" min="0">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirm-save">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast para mensajes -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="successToast" class="toast" role="alert">
+            <div class="toast-header bg-success text-white">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong class="me-auto">Éxito</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                Modificación realizada exitosamente.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables globales
+            let currentPlayerId = null;
+            let originalData = {};
+            let activeFilters = {
+                search: '',
+                team: '',
+                cards: ''
+            };
+            const successToast = new bootstrap.Toast(document.getElementById('successToast'));
+
+            // Función para aplicar filtros
+            function applyFilters() {
+                const searchTerm = document.getElementById('search-input').value.toLowerCase();
+                const teamFilter = document.getElementById('team-filter').value;
+                const cardsFilter = document.getElementById('cards-filter').value;
+                
+                const rows = document.querySelectorAll('#table-body tr');
+                let visibleCount = 0;
+                
+                rows.forEach(row => {
+                    const playerName = row.querySelector('.name').textContent.toLowerCase();
+                    const team = row.getAttribute('data-team');
+                    const cardsType = row.getAttribute('data-cards');
+                    
+                    let shouldShow = true;
+                    
+                    // Filtro de búsqueda
+                    if (searchTerm && !playerName.includes(searchTerm)) {
+                        shouldShow = false;
+                    }
+                    
+                    // Filtro de equipo
+                    if (teamFilter && team !== teamFilter) {
+                        shouldShow = false;
+                    }
+                    
+                    // Filtro de tarjetas
+                    if (cardsFilter) {
+                        if (cardsFilter === 'amarilla' && cardsType !== 'amarilla') {
+                            shouldShow = false;
+                        } else if (cardsFilter === 'roja' && cardsType !== 'roja') {
+                            shouldShow = false;
+                        } else if (cardsFilter === 'sin-tarjetas' && cardsType !== 'sin-tarjetas') {
+                            shouldShow = false;
+                        }
+                    }
+                    
+                    if (shouldShow) {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // Actualizar información de paginación
+                document.getElementById('pagination-info').textContent = `Mostrando ${visibleCount} de ${rows.length} jugadores`;
+                
+                // Mostrar información de filtros activos
+                updateFilterInfo();
+            }
+
+            // Función para actualizar información de filtros
+            function updateFilterInfo() {
+                const searchTerm = document.getElementById('search-input').value;
+                const teamFilter = document.getElementById('team-filter').value;
+                const cardsFilter = document.getElementById('cards-filter').value;
+                
+                const filters = [];
+                
+                if (searchTerm) {
+                    filters.push(`Búsqueda: "${searchTerm}"`);
+                }
+                if (teamFilter) {
+                    filters.push(`Equipo: ${teamFilter}`);
+                }
+                if (cardsFilter) {
+                    let cardsText = '';
+                    switch(cardsFilter) {
+                        case 'amarilla': cardsText = 'Con tarjetas amarillas'; break;
+                        case 'roja': cardsText = 'Con tarjetas rojas'; break;
+                        case 'sin-tarjetas': cardsText = 'Sin tarjetas'; break;
+                    }
+                    filters.push(`Tarjetas: ${cardsText}`);
+                }
+                
+                const filterInfo = document.getElementById('filter-info');
+                const activeFiltersElem = document.getElementById('active-filters');
+                const clearButton = document.getElementById('btn-clear');
+                
+                if (filters.length > 0) {
+                    activeFiltersElem.textContent = `Filtros activos: ${filters.join(' | ')}`;
+                    filterInfo.style.display = 'block';
+                    clearButton.style.display = 'inline-block';
+                    document.getElementById('btn-filter').style.display = 'none';
+                } else {
+                    filterInfo.style.display = 'none';
+                    clearButton.style.display = 'none';
+                    document.getElementById('btn-filter').style.display = 'inline-block';
+                }
+            }
+
+            // Función para limpiar filtros
+            function clearFilters() {
+                document.getElementById('search-input').value = '';
+                document.getElementById('team-filter').value = '';
+                document.getElementById('cards-filter').value = '';
+                applyFilters();
+            }
+
+            // Función para exportar tabla a CSV
+            function exportToCSV() {
+                const table = document.getElementById('stats-table');
+                let csv = [];
+                const headers = [];
+                
+                // Obtener headers
+                table.querySelectorAll('thead th').forEach(header => {
+                    const text = header.textContent.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]/g, '').trim();
+                    if (text) headers.push(text);
+                });
+                csv.push(headers.join(','));
+                
+                // Obtener datos de las filas visibles
+                table.querySelectorAll('tbody tr').forEach(row => {
+                    if (row.style.display !== 'none') {
+                        const rowData = [];
+                        const cells = row.querySelectorAll('td');
+                        
+                        // Nombre del jugador
+                        const name = cells[0].querySelector('.name').textContent.trim();
+                        rowData.push(name);
+                        
+                        // Equipo
+                        const team = cells[1].querySelector('.team-badge').textContent.trim();
+                        rowData.push(team);
+                        
+                        // Goles
+                        const goals = cells[2].querySelector('.goals-badge').textContent.trim();
+                        rowData.push(goals);
+                        
+                        // Tarjetas
+                        const cardsDisplay = cells[3].querySelector('.cards-display');
+                        let cardsText = 'Sin tarjetas';
+                        if (cardsDisplay) {
+                            const yellowCards = cardsDisplay.querySelector('.yellow-card');
+                            const redCards = cardsDisplay.querySelector('.red-card');
+                            
+                            let cards = [];
+                            if (yellowCards) {
+                                const count = yellowCards.textContent.match(/\d+/);
+                                cards.push(`${count ? count[0] : '0'} Amarilla(s)`);
+                            }
+                            if (redCards) {
+                                const count = redCards.textContent.match(/\d+/);
+                                cards.push(`${count ? count[0] : '0'} Roja(s)`);
+                            }
+                            cardsText = cards.length > 0 ? cards.join(', ') : 'Sin tarjetas';
+                        }
+                        rowData.push(cardsText);
+                        
+                        csv.push(rowData.join(','));
+                    }
+                });
+                
+                // Crear y descargar archivo
+                const csvContent = csv.join('\n');
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                
+                link.setAttribute('href', url);
+                link.setAttribute('download', `estadisticas_jugadores_${new Date().toISOString().split('T')[0]}.csv`);
+                link.style.visibility = 'hidden';
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Mostrar mensaje de éxito
+                alert('Archivo exportado exitosamente como CSV');
+            }
+
+            // Función para abrir modal de modificación
+            function openModifyModal(playerId) {
+                const row = document.querySelector(`tr[data-player="${playerId}"]`);
+                if (!row) return;
+                
+                // Obtener datos actuales
+                const name = row.querySelector('.name').textContent;
+                const team = row.querySelector('.team-badge').textContent;
+                const goals = row.querySelector('.goals-badge').textContent;
+                
+                // Obtener tarjetas
+                let yellowCards = 0;
+                let redCards = 0;
+                
+                const cardsDisplay = row.querySelector('.cards-display');
+                if (cardsDisplay) {
+                    const yellowCardElem = cardsDisplay.querySelector('.yellow-card');
+                    const redCardElem = cardsDisplay.querySelector('.red-card');
+                    
+                    if (yellowCardElem) {
+                        const match = yellowCardElem.textContent.match(/\d+/);
+                        yellowCards = match ? parseInt(match[0]) : 0;
+                    }
+                    if (redCardElem) {
+                        const match = redCardElem.textContent.match(/\d+/);
+                        redCards = match ? parseInt(match[0]) : 0;
+                    }
+                }
+                
+                // Guardar datos originales
+                originalData = {
+                    goals: goals,
+                    yellow: yellowCards,
+                    red: redCards
+                };
+                
+                // Llenar modal
+                document.getElementById('modal-player-name').value = name;
+                document.getElementById('modal-player-team').value = team;
+                document.getElementById('modal-player-goals').value = goals;
+                document.getElementById('modal-player-yellow').value = yellowCards;
+                document.getElementById('modal-player-red').value = redCards;
+                
+                currentPlayerId = playerId;
+                
+                const modal = new bootstrap.Modal(document.getElementById('modifyModal'));
+                modal.show();
+            }
+
+            // Función para guardar cambios
+            function saveChanges() {
+                if (!currentPlayerId) return;
+                
+                const newGoals = parseInt(document.getElementById('modal-player-goals').value) || 0;
+                const newYellow = parseInt(document.getElementById('modal-player-yellow').value) || 0;
+                const newRed = parseInt(document.getElementById('modal-player-red').value) || 0;
+                
+                // Verificar si hay cambios
+                const hasChanges = newGoals !== parseInt(originalData.goals) || 
+                                 newYellow !== originalData.yellow || 
+                                 newRed !== originalData.red;
+                
+                if (!hasChanges) {
+                    alert('No se detectaron cambios en las estadísticas.');
+                    return;
+                }
+                
+                // Confirmar cambios
+                const confirmSave = confirm('¿Estás seguro de que quieres guardar los cambios en las estadísticas?');
+                
+                if (confirmSave) {
+                    // Actualizar la tabla
+                    const row = document.querySelector(`tr[data-player="${currentPlayerId}"]`);
+                    if (row) {
+                        // Actualizar goles
+                        const goalsBadge = row.querySelector('.goals-badge');
+                        goalsBadge.textContent = newGoals;
+                        if (newGoals === 0) {
+                            goalsBadge.classList.add('zero');
+                        } else {
+                            goalsBadge.classList.remove('zero');
+                        }
+                        
+                        // Actualizar tarjetas
+                        const cardsCell = row.querySelector('.cards-count');
+                        if (newYellow === 0 && newRed === 0) {
+                            cardsCell.innerHTML = '<span class="no-cards">-</span>';
+                            row.setAttribute('data-cards', 'sin-tarjetas');
+                        } else {
+                            let cardsHTML = '<div class="cards-display">';
+                            if (newYellow > 0) {
+                                cardsHTML += `<span class="card yellow-card"><i class="fas fa-square"></i> ${newYellow}</span>`;
+                            }
+                            if (newRed > 0) {
+                                cardsHTML += `<span class="card red-card"><i class="fas fa-square"></i> ${newRed}</span>`;
+                            }
+                            cardsHTML += '</div>';
+                            cardsCell.innerHTML = cardsHTML;
+                            
+                            // Actualizar tipo de tarjetas para filtros
+                            if (newYellow > 0 && newRed === 0) {
+                                row.setAttribute('data-cards', 'amarilla');
+                            } else if (newRed > 0 && newYellow === 0) {
+                                row.setAttribute('data-cards', 'roja');
+                            } else {
+                                row.setAttribute('data-cards', 'amarilla');
+                            }
+                        }
+                    }
+                    
+                    // Cerrar modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modifyModal'));
+                    modal.hide();
+                    
+                    // Re-aplicar filtros por si los cambios afectan la visibilidad
+                    applyFilters();
+                    
+                    // Mostrar mensaje de éxito
+                    successToast.show();
+                    
+                    // Resetear variables
+                    currentPlayerId = null;
+                    originalData = {};
+                }
+            }
+
+            // Event Listeners
+            document.getElementById('btn-export').addEventListener('click', exportToCSV);
+            document.getElementById('btn-filter').addEventListener('click', applyFilters);
+            document.getElementById('btn-clear').addEventListener('click', clearFilters);
+            
+            // Filtro de búsqueda en tiempo real
+            document.getElementById('search-input').addEventListener('input', applyFilters);
+            
+            // Filtros de select en tiempo real
+            document.getElementById('team-filter').addEventListener('change', applyFilters);
+            document.getElementById('cards-filter').addEventListener('change', applyFilters);
+            
+            document.querySelectorAll('.btn-modify').forEach(button => {
+                button.addEventListener('click', function() {
+                    const playerId = this.getAttribute('data-player');
+                    openModifyModal(playerId);
+                });
+            });
+            
+            document.getElementById('confirm-save').addEventListener('click', saveChanges);
+
+            // Efectos hover en filas
+            const tableRows = document.querySelectorAll('.stats-table tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
