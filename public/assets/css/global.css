@@ -807,3 +807,190 @@ tbody tr:hover {
     transform: translateY(-3px);
     color: var(--primary-color);
 }
+
+/******************************
+        EDITOR DE TORNEO
+******************************/
+
+/* Secciones de Control */
+.control-section {
+    margin-bottom: 2rem;
+}
+
+.control-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.control-card {
+    background: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.control-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.control-card.danger:hover {
+    border-color: var(--error-color);
+}
+
+.control-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.25rem;
+}
+
+.control-card.danger .control-icon {
+    background: linear-gradient(135deg, var(--error-color), #b91c1c);
+}
+
+.control-content {
+    flex: 1;
+}
+
+.control-content h5 {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.control-content p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.control-arrow {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.control-card:hover .control-arrow {
+    color: var(--primary-color);
+    transform: translateX(3px);
+}
+
+.control-card.danger:hover .control-arrow {
+    color: var(--error-color);
+}
+
+/* Información Rápida */
+.quick-info {
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: var(--light-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-medium);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estado del Torneo */
+.tournament-status .badge {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+/* Modal Específico */
+.modal-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    border-bottom: none;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .control-card {
+        padding: 1rem;
+    }
+    
+    .control-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .admin-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .control-grid {
+        gap: 0.75rem;
+    }
+    
+    .control-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .control-content h5 {
+        font-size: 1rem;
+    }
+    
+    .control-content p {
+        font-size: 0.8rem;
+    }
+    
+    .quick-info .row {
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+}
