@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TorNet - Editor de Torneo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-title">TorNet</div>
+    </header>
+
+    <main class="main-content">
+        <div class="admin-container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="admin-title">Editar Torneo</h1>
+                </div>
+                <div class="tournament-status">
+                    <span class="badge bg-success fs-6">
+                        <i class="fas fa-circle me-1"></i> Torneo Activo
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-custom p-4">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="control-section">
+                            <h4 class="section-title mb-4">
+                                <i class="fas fa-cog me-2"></i>Gestión del Torneo
+                            </h4>
+                            
+                            <div class="control-grid">
+                                <!-- Información General -->
+                                <div class="control-card" data-action="info-general">
+                                    <div class="control-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="control-content" href="infGen.html">
+                                        <h5>Información general</h5>
+                                        <p>Configura los datos básicos del torneo</p>
+                                    </div>
+                                    <div class="control-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Equipos/Jugadores -->
+                                <div class="control-card" data-action="equipos">
+                                    <div class="control-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="control-content" href="equipos.html">
+                                        <h5>Equipos/Jugadores</h5>
+                                        <p>Gestiona participantes del torneo</p>
+                                    </div>
+                                    <div class="control-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Programar Partidos -->
+                                <div class="control-card" data-action="programar">
+                                    <div class="control-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="control-content" href="programar.html">
+                                        <h5>Programar partidos</h5>
+                                        <p>Organiza el calendario de encuentros</p>
+                                    </div>
+                                    <div class="control-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha - Gestión Avanzada -->
+                    <div class="col-md-6">
+                        <div class="control-section">
+                            <h4 class="section-title mb-4">
+                                <i class="fas fa-tools me-2"></i>Gestión Avanzada
+                            </h4>
+                            
+                            <div class="control-grid">
+                                <!-- Registrar Resultados -->
+                                <div class="control-card" data-action="resultados">
+                                    <div class="control-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="control-content" href="resultados.html">
+                                        <h5>Registrar resultados</h5>
+                                        <p>Ingresa los resultados de los partidos</p>
+                                    </div>
+                                    <div class="control-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Editar Convocatoria -->
+                                <div class="control-card" data-action="convocatoria">
+                                    <div class="control-icon">
+                                        <i class="fas fa-edit"></i>
+                                    </div>
+                                    <div class="control-content" href="convocatoria.html">
+                                        <h5>Editar convocatoria</h5>
+                                        <p>Modifica las reglas y condiciones</p>
+                                    </div>
+                                    <div class="control-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Cerrar Torneo -->
+                                <div class="control-card danger" data-action="cerrar">
+                                    <div class="control-icon">
+                                        <i class="fas fa-flag-checkered"></i>
+                                    </div>
+                                    <div class="control-content">
+                                        <h5>Cerrar torneo</h5>
+                                        <p>Finaliza el torneo actual</p>
+                                    </div>
+                                    <div class="control-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Separador -->
+                <hr class="my-5">
+
+                <!-- Información Rápida del Torneo -->
+                <div class="quick-info">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Equipos</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-number">24</div>
+                                <div class="stat-label">Jugadores</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Partidos</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">Días Restantes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo mb-3">TorNet</div>
+                <p class="footer-description">
+                    Plataforma líder en gestión de torneos deportivos. 
+                    Conectamos equipos, jugadores y organizadores.
+                </p>
+                <div class="social-icons mb-3">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="contact-info">
+                    <p>contacto@tornet.com | +52 123 456 7890</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal fade" id="actionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Confirmar Acción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Contenido dinámico -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmAction">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast para mensajes -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="successToast" class="toast" role="alert">
+            <div class="toast-header bg-success text-white">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong class="me-auto">Éxito</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                Acción completada exitosamente.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const actionModal = new bootstrap.Modal(document.getElementById('actionModal'));
+            const successToast = new bootstrap.Toast(document.getElementById('successToast'));
+            
+            // Configuración de acciones
+            const actions = {
+                'info-general': {
+                    title: 'Información General',
+                    message: 'Vas a editar la información general del torneo. ¿Deseas continuar?',
+                    action: () => openInfoGeneral()
+                },
+                'equipos': {
+                    title: 'Gestionar Equipos y Jugadores',
+                    message: 'Vas a gestionar los equipos y jugadores del torneo. ¿Deseas continuar?',
+                    action: () => openEquiposJugadores()
+                },
+                'programar': {
+                    title: 'Programar Partidos',
+                    message: 'Vas a programar los partidos del torneo. ¿Deseas continuar?',
+                    action: () => openProgramarPartidos()
+                },
+                'resultados': {
+                    title: 'Registrar Resultados',
+                    message: 'Vas a registrar resultados de partidos. ¿Deseas continuar?',
+                    action: () => openRegistrarResultados()
+                },
+                'convocatoria': {
+                    title: 'Editar Convocatoria',
+                    message: 'Vas a editar la convocatoria del torneo. ¿Deseas continuar?',
+                    action: () => openEditarConvocatoria()
+                },
+                'cerrar': {
+                    title: 'Cerrar Torneo',
+                    message: '<div class="alert alert-warning"><strong>¡Advertencia!</strong> Esta acción no se puede deshacer. Al cerrar el torneo:<br><br><ul><li>No se podrán modificar resultados</li><li>No se podrán agregar nuevos participantes</li><li>El torneo se marcará como finalizado</li></ul><br>¿Estás seguro de que deseas cerrar el torneo?</div>',
+                    action: () => closeTournament()
+                }
+            };
+
+            // Event listeners para las tarjetas de control
+            document.querySelectorAll('.control-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    if (actions[action]) {
+                        showActionModal(actions[action]);
+                    }
+                });
+            });
+
+            // Mostrar modal de confirmación
+            function showActionModal(actionConfig) {
+                document.getElementById('modalTitle').textContent = actionConfig.title;
+                document.getElementById('modalBody').innerHTML = actionConfig.message;
+                
+                const confirmBtn = document.getElementById('confirmAction');
+                confirmBtn.onclick = function() {
+                    actionModal.hide();
+                    actionConfig.action();
+                };
+                
+                actionModal.show();
+            }
+
+            // Funciones de las acciones
+            function openInfoGeneral() {
+                showSuccess('Información general abierta para edición');
+                // Aquí iría la lógica para abrir el editor de información general
+                setTimeout(() => {
+                    window.location.href = 'informacion-general.html';
+                }, 1000);
+            }
+
+            function openEquiposJugadores() {
+                showSuccess('Gestión de equipos y jugadores abierta');
+                // Aquí iría la lógica para abrir la gestión de equipos
+                setTimeout(() => {
+                    window.location.href = 'gestion-equipos.html';
+                }, 1000);
+            }
+
+            function openProgramarPartidos() {
+                showSuccess('Programación de partidos abierta');
+                // Aquí iría la lógica para abrir la programación
+                setTimeout(() => {
+                    window.location.href = 'programar-partidos.html';
+                }, 1000);
+            }
+
+            function openRegistrarResultados() {
+                showSuccess('Registro de resultados abierto');
+                // Aquí iría la lógica para abrir el registro de resultados
+                setTimeout(() => {
+                    window.location.href = 'registrar-resultados.html';
+                }, 1000);
+            }
+
+            function openEditarConvocatoria() {
+                showSuccess('Editor de convocatoria abierto');
+                // Aquí iría la lógica para abrir el editor de convocatoria
+                setTimeout(() => {
+                    window.location.href = 'editar-convocatoria.html';
+                }, 1000);
+            }
+
+            function closeTournament() {
+                showSuccess('Torneo cerrado exitosamente');
+                // Aquí iría la lógica para cerrar el torneo
+                setTimeout(() => {
+                    document.querySelector('.tournament-status .badge')
+                        .classList.replace('bg-success', 'bg-secondary')
+                        .innerHTML = '<i class="fas fa-circle me-1"></i> Torneo Cerrado';
+                }, 1000);
+            }
+
+            function showSuccess(message) {
+                document.getElementById('toastMessage').textContent = message;
+                successToast.show();
+            }
+
+            // Efectos hover en las tarjetas
+            document.querySelectorAll('.control-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Atajo de teclado (Ctrl + I)
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'i') {
+                    e.preventDefault();
+                    showActionModal(actions['info-general']);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
