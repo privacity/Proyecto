@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Contactos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="global.css">
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-logo">Administrar Contactos</h1>
+            <p class="section-subtitle">Modifica la información fácilmente</p>
+        </div>
+    </section>
+
+    <div class="container main-content">
+        <h2 class="section-title">Panel de Edición</h2>
+
+        <div class="row g-4">
+
+            <!-- Teléfono -->
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <h4 class="card-title"><i class="fa-solid fa-phone"></i> Teléfono</h4>
+                    <input type="text" class="form-control mb-3" placeholder="+52 123 456 7890">
+                    <button class="btn btn-primary w-100">Guardar Cambios</button>
+                </div>
+            </div>
+
+            <!-- Correo -->
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <h4 class="card-title"><i class="fa-solid fa-envelope"></i> Correo</h4>
+                    <input type="email" class="form-control mb-3" placeholder="contacto@tornet.com">
+                    <button class="btn btn-primary w-100">Guardar Cambios</button>
+                </div>
+            </div>
+
+            <!-- Redes Sociales -->
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <h4 class="card-title"><i class="fa-solid fa-hashtag"></i> Redes Sociales</h4>
+
+                    <label>Facebook</label>
+                    <input type="text" class="form-control mb-2" placeholder="https://facebook.com/...">
+
+                    <label>Instagram</label>
+                    <input type="text" class="form-control mb-2" placeholder="https://instagram.com/...">
+
+                    <label>X / Twitter</label>
+                    <input type="text" class="form-control mb-3" placeholder="https://x.com/...">
+
+                    <button class="btn btn-primary w-100">Guardar Cambios</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
