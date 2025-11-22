@@ -1,19 +1,19 @@
-const torneoService = require("../services/torneo.service");
+const tournamentService = require("../services/tournament.service");
 
-exports.crearTorneo = async (req, res) => {
+exports.createTournament = async (req, res) => {
     try {
-        const { nombre, categoria } = req.body;
-        const archivo = req.file;
+        const { name, category } = req.body;
+        const file = req.file;
 
-        const torneo = await torneoService.crearTorneo({
-            nombre,
-            categoria,
-            archivo
+        const tournament = await tournamentService.createTournament({
+            name,
+            category,
+            file
         });
 
         return res.status(201).json({
             mensaje: "Torneo creado correctamente",
-            torneo
+            torneo: tournament
         });
 
     } catch (error) {

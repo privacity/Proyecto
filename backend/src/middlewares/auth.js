@@ -1,5 +1,5 @@
-module.exports = (req, res, next) => {
-    const autorizado = true; // luego lo conectas con JWT
-    if (!autorizado) return res.status(401).json({ error: "No autorizado" });
+module.exports = (req, _res, next) => {
+    // Placeholder auth; replace with real logic (JWT, sessions, etc.)
+    req.user = { id: 'anonymous' };
     next();
 };

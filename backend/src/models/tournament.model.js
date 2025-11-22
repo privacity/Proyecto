@@ -1,9 +1,9 @@
 const db = require("../config/db");
 
-exports.buscarPorNombre = (nombre) => {
-    return db("torneos").where({ nombre }).first();
+exports.findByName = (name) => {
+    return db("torneos").where({ nombre: name }).first();
 };
 
-exports.crear = (data) => {
+exports.create = (data) => {
     return db("torneos").insert(data).returning("*");
 };
