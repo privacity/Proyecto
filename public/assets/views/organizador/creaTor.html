@@ -27,63 +27,64 @@
                 </div>
             </div>
 
-            <div class="card-custom p-4">
-                <div class="row">
-                    <!-- Columna Izquierda - Formulario -->
-                    <div class="col-md-8">
-                        <div class="form-section mb-4">
-                            <h4 class="section-title">Información del Torneo</h4>
-                            
-                            <!-- Nombre del torneo -->
-                            <div class="form-group mb-4">
-                                <label class="form-label">Nombre del torneo</label>
-                                <input type="text" class="form-control" placeholder="Ingresa el nombre del torneo">
-                            </div>
-
-                            <!-- Categoría -->
-                            <div class="form-group mb-4">
-                                <label class="form-label">Categoría</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                                    <select class="form-control">
-                                        <option value="">Elige la categoría</option>
-                                        <option value="futbol">Fútbol</option>
-                                        <option value="basquetbol">Básquetbol</option>
-                                        <option value="voleibol">Voleibol</option>
-                                        <option value="tenis">Tenis</option>
-                                    </select>
+            <form id="form-torneo" enctype="multipart/form-data">
+                <div class="card-custom p-4">
+                    <div class="row">
+                        <!-- Columna Izquierda - Formulario -->
+                        <div class="col-md-8">
+                            <div class="form-section mb-4">
+                                <h4 class="section-title">Información del Torneo</h4>
+                                
+                                <!-- Nombre del torneo -->
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Nombre del torneo</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Ingresa el nombre del torneo" required>
                                 </div>
-                            </div>
 
-                            <!-- Sobre la convocatoria -->
-                            <div class="form-group mb-4">
-                                <label class="form-label">Sobre la convocatoria</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                                    <textarea class="form-control" placeholder="Describe la convocatoria" rows="4"></textarea>
-                                </div>
-                            </div>
-
-                            <!-- Icono del torneo -->
-                            <div class="form-group mb-4">
-                                <label class="form-label">Icono del Torneo</label>
-                                <div class="file-upload-container">
-                                    <input type="file" id="icon-upload" class="file-input" accept="image/*" hidden>
-                                    <div class="file-upload-area" id="upload-area">
-                                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                                        <p class="upload-text">Haz clic para seleccionar un icono</p>
-                                        <p class="upload-hint">Formatos soportados: JPG, PNG, SVG</p>
+                                <!-- Categoría -->
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Categoría</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                        <select name="category" class="form-control" required>
+                                            <option value="">Elige la categoría</option>
+                                            <option value="futbol">Fútbol</option>
+                                            <option value="basquetbol">Básquetbol</option>
+                                            <option value="voleibol">Voleibol</option>
+                                            <option value="tenis">Tenis</option>
+                                        </select>
                                     </div>
-                                    <div class="file-preview" id="file-preview" style="display: none;">
-                                        <img id="preview-image" src="" alt="Vista previa">
-                                        <button type="button" class="btn-remove" id="remove-file">
-                                            <i class="fas fa-times"></i>
-                                        </button>
+                                </div>
+
+                                <!-- Sobre la convocatoria -->
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Sobre la convocatoria</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                        <textarea name="description" class="form-control" placeholder="Describe la convocatoria" rows="4"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Icono del torneo -->
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Icono del Torneo</label>
+                                    <div class="file-upload-container">
+                                        <input type="file" name="file" id="icon-upload" class="file-input" accept="image/*" hidden required>
+                                        <div class="file-upload-area" id="upload-area">
+                                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                            <p class="upload-text">Haz clic para seleccionar un icono</p>
+                                            <p class="upload-hint">Formatos soportados: JPG, PNG, SVG</p>
+                                        </div>
+                                        <div class="file-preview" id="file-preview" style="display: none;">
+                                            <img id="preview-image" src="" alt="Vista previa">
+                                            <button type="button" class="btn-remove" id="remove-file">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     <!-- Columna Derecha - Información adicional -->
                     <div class="col-md-4">
@@ -122,6 +123,7 @@
                     </button>
                 </div>
             </div>
+            </form>
         </div>
     </main>
 
@@ -250,15 +252,37 @@
                 modal.show();
             });
             
-            confirmPublishBtn.addEventListener('click', function() {
+            confirmPublishBtn.addEventListener('click', async function() {
                 const confirmModal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
                 confirmModal.hide();
                 
-                // Simular procesamiento
-                setTimeout(function() {
-                    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                    successModal.show();
-                }, 1000);
+                // Get form and create FormData
+                const form = document.getElementById('form-torneo');
+                const formData = new FormData(form);
+
+                try {
+                    const res = await fetch('/api/tournaments/create', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        // Show success modal
+                        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                        successModal.show();
+                        
+                        // Redirect after modal is shown
+                        setTimeout(function() {
+                            window.location.href = '/assets/views/organizador/gstionTorneos.html';
+                        }, 1500);
+                    } else {
+                        alert('Error: ' + (data.error || 'No se pudo crear el torneo'));
+                    }
+                } catch (error) {
+                    alert('Error al conectar con el servidor: ' + error.message);
+                }
             });
         });
     </script>
