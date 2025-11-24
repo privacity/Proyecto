@@ -53,6 +53,42 @@ const TournamentController = {
         } catch (err) {
             res.status(500).json({ error: "Error al obtener torneos" });
         }
+    },
+
+    async getTournamentById(req, res) {
+        try {
+            const { id } = req.params;
+            const torneo = await knex('Torneo').where('idTorneo', id).first();
+
+            if (!torneo) {
+                return res.status(404).json({ error: 'Torneo no encontrado' });
+            }
+
+            res.json(torneo);
+        } catch (err) {
+            console.error('Error al obtener el torneo:', err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+        }
+    },
+
+    async updateTournament(req, res) {
+        try {
+            const { id } = req.params;
+            const { estadoTorneo, fechaInicio, fechaFin } = req.body;
+
+            const updated = await knex('Torneo')
+                .where('idTorneo', id)
+                .update({ estadoTorneo, fechaInicio, fechaFin });
+
+            if (!updated) {
+                return res.status(404).json({ error: 'Torneo no encontrado' });
+            }
+
+            res.json({ message: 'Torneo actualizado correctamente' });
+        } catch (err) {
+            console.error('Error al actualizar el torneo:', err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+        }
     }
 };
 

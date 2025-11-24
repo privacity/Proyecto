@@ -3,250 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TorNet - Editor de Torneo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="global.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>TorNet - Editar Torneo</title>
+    <link rel="stylesheet" href="/css/global.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-title">TorNet</div>
-        <div class="header-buttons">
-            <a href="TorActuales.html" class="nav-btn">
-                <i class="fas fa-arrow-left me-2"></i> Volver
-            </a>
-        </div>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="logo">TorNet</div>
+        <a href="/views/organizador/organizador.html" class="btn-header">Inicio</a>
     </header>
 
-    <main class="main-content">
-        <div class="admin-container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h1 class="admin-title">Editar Torneo</h1>
-                </div>
-                <div class="tournament-status">
-                    <span class="badge bg-success fs-6">
-                        <i class="fas fa-circle me-1"></i> Torneo Activo
-                    </span>
-                </div>
-            </div>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-container">
+        <h1 class="gestion-title">Editar Torneo</h1>
+        <p class="gestion-subtitle">¿Qué deseas hacer?</p>
 
-            <div class="card-custom p-4">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="control-section">
-                            <h4 class="section-title mb-4">
-                                <i class="fas fa-cog me-2"></i>Gestión del Torneo
-                            </h4>
-                            
-                            <div class="control-grid">
-                                <!-- Información General -->
-                                <a href="infGen.html" class="control-card">
-                                    <div class="control-icon">
-                                        <i class="fas fa-info-circle"></i>
-                                    </div>
-                                    <div class="control-content">
-                                        <h5>Información general</h5>
-                                        <p>Configura los datos básicos del torneo</p>
-                                    </div>
-                                    <div class="control-arrow">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                </a>
-
-                                <!-- Equipos/Jugadores -->
-                                <a href="equipos.html" class="control-card">
-                                    <div class="control-icon">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                    <div class="control-content">
-                                        <h5>Equipos/Jugadores</h5>
-                                        <p>Gestiona participantes del torneo</p>
-                                    </div>
-                                    <div class="control-arrow">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                </a>
-
-                                <!-- Programar Partidos -->
-                                <a href="programar.html" class="control-card">
-                                    <div class="control-icon">
-                                        <i class="fas fa-calendar-alt"></i>
-                                    </div>
-                                    <div class="control-content">
-                                        <h5>Programar partidos</h5>
-                                        <p>Organiza el calendario de encuentros</p>
-                                    </div>
-                                    <div class="control-arrow">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Columna Derecha - Gestión Avanzada -->
-                    <div class="col-md-6">
-                        <div class="control-section">
-                            <h4 class="section-title mb-4">
-                                <i class="fas fa-tools me-2"></i>Gestión Avanzada
-                            </h4>
-                            
-                            <div class="control-grid">
-                                <!-- Registrar Resultados -->
-                                <a href="resultados.html" class="control-card">
-                                    <div class="control-icon">
-                                        <i class="fas fa-chart-line"></i>
-                                    </div>
-                                    <div class="control-content">
-                                        <h5>Registrar resultados</h5>
-                                        <p>Ingresa los resultados de los partidos</p>
-                                    </div>
-                                    <div class="control-arrow">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                </a>
-
-                                <!-- Editar Convocatoria -->
-                                <a href="convocatoria.html" class="control-card">
-                                    <div class="control-icon">
-                                        <i class="fas fa-edit"></i>
-                                    </div>
-                                    <div class="control-content">
-                                        <h5>Editar convocatoria</h5>
-                                        <p>Modifica las reglas y condiciones</p>
-                                    </div>
-                                    <div class="control-arrow">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                </a>
-
-                                <!-- Cerrar Torneo -->
-                                <div class="control-card danger" id="cerrar-torneo">
-                                    <div class="control-icon">
-                                        <i class="fas fa-flag-checkered"></i>
-                                    </div>
-                                    <div class="control-content">
-                                        <h5>Cerrar torneo</h5>
-                                        <p>Finaliza el torneo actual</p>
-                                    </div>
-                                    <div class="control-arrow">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Separador -->
-                <hr class="my-5">
-
-                <!-- Información Rápida del Torneo -->
-                <div class="quick-info">
-                    <div class="row text-center">
-                        <div class="col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">8</div>
-                                <div class="stat-label">Equipos</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">24</div>
-                                <div class="stat-label">Jugadores</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">12</div>
-                                <div class="stat-label">Partidos</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">6</div>
-                                <div class="stat-label">Días Restantes</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="gestion-buttons">
+            <button class="gestion-option btn-tornet" data-action="info-general">Información general</button>
+            <button class="gestion-option btn-tornet" data-action="equipos">Equipos/Jugadores</button>
+            <button class="gestion-option btn-tornet" data-action="programar">Programar partidos</button>
+            <button class="gestion-option btn-tornet" data-action="resultados">Registrar resultados</button>
+            <button class="gestion-option btn-tornet" data-action="convocatoria">Editar convocatoria</button>
+            <button class="gestion-option btn-tornet danger" data-action="cerrar">Cerrar torneo</button>
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo mb-3">TorNet</div>
-                <p class="footer-description">
-                    Plataforma líder en gestión de torneos deportivos. 
-                    Conectamos equipos, jugadores y organizadores.
-                </p>
-                <div class="social-icons mb-3">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="contact-info">
-                    <p>contacto@tornet.com | +52 123 456 7890</p>
-                </div>
-            </div>
+        <p>TorNet</p>
+        <div class="icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
 
-    <!-- Toast para mensajes -->
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="successToast" class="toast" role="alert">
-            <div class="toast-header bg-success text-white">
-                <i class="fas fa-check-circle me-2"></i>
-                <strong class="me-auto">Éxito</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
-            </div>
-            <div class="toast-body" id="toastMessage">
-                Acción completada exitosamente.
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const successToast = new bootstrap.Toast(document.getElementById('successToast'));
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const idTorneo = urlParams.get('id');
 
-            // Función para cerrar torneo
-            function closeTournament() {
-                if (confirm('¿Estás seguro de que quieres cerrar el torneo? Esta acción no se puede deshacer.')) {
-                    showSuccess('Torneo cerrado exitosamente');
-                    
-                    // Actualizar estado del torneo
-                    setTimeout(() => {
-                        document.querySelector('.tournament-status .badge')
-                            .classList.replace('bg-success', 'bg-secondary')
-                            .innerHTML = '<i class="fas fa-circle me-1"></i> Torneo Cerrado';
-                    }, 1000);
-                }
+            if (!idTorneo) {
+                alert('No se ha seleccionado un torneo para editar.');
+                window.location.href = '/views/organizador/TorActuales.html';
+                return;
             }
 
-            function showSuccess(message) {
-                document.getElementById('toastMessage').textContent = message;
-                successToast.show();
-            }
+            const buttons = document.querySelectorAll('.gestion-option');
 
-            // Event listener para cerrar torneo
-            document.getElementById('cerrar-torneo').addEventListener('click', closeTournament);
-
-            // Efectos hover en las tarjetas
-            document.querySelectorAll('.control-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const action = button.getAttribute('data-action');
+                    handleAction(action, idTorneo);
                 });
             });
+
+            function handleAction(action, idTorneo) {
+                switch (action) {
+                    case 'info-general':
+                        window.location.href = `/views/organizador/infoGeneral.html?id=${idTorneo}`;
+                        break;
+                    case 'equipos':
+                        window.location.href = `/views/organizador/equipos.html?id=${idTorneo}`;
+                        break;
+                    case 'programar':
+                        window.location.href = `/views/organizador/ProgPartido.html?id=${idTorneo}`;
+                        break;
+                    case 'resultados':
+                        window.location.href = `/views/organizador/RegResultados.html?id=${idTorneo}`;
+                        break;
+                    case 'convocatoria':
+                        window.location.href = `/views/organizador/editConvocatoria.html?id=${idTorneo}`;
+                        break;
+                    case 'cerrar':
+                        alert('¿Estás seguro de que deseas cerrar el torneo? Esta acción no se puede deshacer.');
+                        break;
+                    default:
+                        console.error('Acción no reconocida:', action);
+                }
+            }
         });
     </script>
 </body>

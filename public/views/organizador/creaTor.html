@@ -72,127 +72,88 @@
         <h1 class="main-title">Crear torneo</h1>
 
         <!-- FORMULARIO -->
-<form action="/tournament/create" method="POST" enctype="multipart/form-data">
-
+        <form id="form-torneo" enctype="multipart/form-data">
             <div class="row">
-
-                <!-- COLUMNA IZQUIERDA -->
                 <div class="col-md-8">
-
                     <h4 class="section-title mb-3">Información del Torneo</h4>
 
-                    <!-- Nombre -->
-                    <div class="mb-4">
-                        <label class="form-label">Nombre del torneo</label>
-                        <input 
-                            type="text" 
-                            class="form-control"
-                            name="nombreTorneo"
-                            placeholder="Ingresa el nombre del torneo"
-                            required
-                        >
+                    <div class="mb-3">
+                        <label class="form-label" for="nombreTorneo">Nombre del torneo</label>
+                        <input type="text" class="form-control" id="nombreTorneo" name="nombreTorneo" required>
                     </div>
 
-                    <!-- Categoría -->
-                    <div class="mb-4">
-                        <label class="form-label">Categoría</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                            <select class="form-control" name="categoria" required>
-                                <option value="">Selecciona categoría</option>
-                                <option value="Juvenil">Juvenil</option>
-                                <option value="Adulto">Adulto</option>
-                                <option value="Veteranos">Veteranos</option>
-                            </select>
+                    <div class="mb-3">
+                        <label class="form-label" for="categoria">Categoría</label>
+                        <select class="form-select" id="categoria" name="categoria" required>
+                            <option value="">Selecciona...</option>
+                            <option>Infantil</option>
+                            <option>Juvenil</option>
+                            <option>Libre</option>
+                            <option>Femenil</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="sede">Sede (opcional)</label>
+                        <input type="text" class="form-control" id="sede" name="sede">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="fechaInicio">Fecha inicio (opcional)</label>
+                            <input type="date" class="form-control" id="fechaInicio" name="fechaInicio">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="fechaFin">Fecha fin (opcional)</label>
+                            <input type="date" class="form-control" id="fechaFin" name="fechaFin">
                         </div>
                     </div>
 
-                    <!-- Descripción / Sobre la convocatoria -->
                     <div class="mb-4">
-                        <label class="form-label">Sobre la convocatoria</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                            <textarea 
-                                class="form-control"
-                                name="descripcionConvocatoria"
-                                placeholder="Escribe una descripción breve"
-                                rows="4"
-                            ></textarea>
+                        <label class="form-label">Convocatoria (JPG/PNG)</label>
+                        <div id="upload-area" class="file-upload-area">
+                            <p class="m-0">Haz clic para subir archivo</p>
+                            <input type="file" id="file-input" name="convocatoria" accept="image/png,image/jpeg" hidden required>
+                            <div id="file-name" style="display:none;margin-top:10px;font-size:14px;"></div>
                         </div>
                     </div>
 
-                    <!-- Archivo Convocatoria -->
-                    <div class="mb-4">
-                        <label class="form-label">Archivo de Convocatoria</label>
-
-                        <input 
-                            type="file"
-                            class="file-input"
-                            name="convocatoria"
-                            accept="image/jpeg,image/png"
-                            id="file-input"
-                            hidden
-                            required
-                        >
-
-                        <div class="file-upload-area" id="upload-area">
-                            <i class="fas fa-cloud-upload-alt fa-3x mb-2"></i>
-                            <p class="upload-text">Haz clic para seleccionar la convocatoria</p>
-                            <p class="upload-hint">Formatos soportados: JPG, PNG</p>
-                        </div>
-
-                        <div class="mt-3" id="file-name" style="display:none; font-weight:600;"></div>
-                    </div>
-
-                    <!-- Organizador TEMPORAL -->
                     <input type="hidden" name="idOrganizador" value="1">
-
                 </div>
 
-                <!-- COLUMNA DERECHA -->
                 <div class="col-md-4">
-
                     <div class="info-card">
-                        <h5><i class="fas fa-lightbulb"></i> Consejos</h5>
-                        <ul>
-                            <li>Usa un nombre claro</li>
-                            <li>Selecciona correctamente la categoría</li>
-                            <li>Escribe reglas básicas</li>
-                            <li>Sube una convocatoria clara</li>
+                        <strong>Instrucciones:</strong>
+                        <ul class="mt-2 mb-0">
+                            <li>Completa los campos obligatorios.</li>
+                            <li>Sube la convocatoria como imagen.</li>
+                            <li>Luego pulsa publicar.</li>
                         </ul>
                     </div>
-
                     <div class="info-card">
-                        <h5><i class="fas fa-cog"></i> Configuración</h5>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" disabled>
-                            <label class="form-check-label">Torneo público</label>
-                        </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" disabled>
-                            <label class="form-check-label">Inscripciones abiertas</label>
-                        </div>
+                        <strong>Estado:</strong>
+                        <div>Nuevo torneo (sin publicar externo)</div>
                     </div>
-
                 </div>
             </div>
 
             <hr class="my-4">
-
             <div class="d-flex justify-content-end">
                 <button class="btn-publish" type="button" id="btn-publish">
                     <i class="fas fa-paper-plane"></i> Guardar y publicar
                 </button>
             </div>
-
         </form>
     </main>
 
     <!-- MODAL 1: Confirmación -->
-    <div class="modal fade" id="confirmModal">
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><h5>Confirmar publicación</h5></div>
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirmar publicación</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
                 <div class="modal-body">¿Deseas publicar este torneo?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -205,31 +166,57 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // File upload simple
+    document.addEventListener('DOMContentLoaded', () => {
         const area = document.getElementById("upload-area");
         const input = document.getElementById("file-input");
         const nameBox = document.getElementById("file-name");
+        const publish = document.getElementById("btn-publish");
+        const confirmBtn = document.getElementById("confirm-publish");
+        const form = document.getElementById("form-torneo");
 
         area.onclick = () => input.click();
 
         input.onchange = () => {
             if (input.files.length) {
                 nameBox.style.display = "block";
-                nameBox.textContent = "Archivo seleccionado: " + input.files[0].name;
+                nameBox.textContent = "Archivo: " + input.files[0].name;
             }
         };
 
-        // Modal
-        const publish = document.getElementById("btn-publish");
-        const confirmBtn = document.getElementById("confirm-publish");
-
         publish.onclick = () => {
+            if (!window.bootstrap) {
+                alert("Bootstrap no cargó");
+                return;
+            }
             new bootstrap.Modal(document.getElementById("confirmModal")).show();
         };
 
-        confirmBtn.onclick = () => {
-            document.getElementById("form-torneo").submit();
+        confirmBtn.onclick = async () => {
+            try {
+                const formData = new FormData(form);
+                console.log("FormData:", [...formData.entries()]);
+
+                const res = await fetch("/api/tournaments/create", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const raw = await res.text();
+                let data;
+                try { data = JSON.parse(raw); } catch { data = { raw }; }
+                console.log("Status:", res.status, data);
+
+                if (res.ok) {
+                    window.location.href = "/views/organizador/gstionTorneos.html";
+                } else {
+                    alert("Error: " + (data.error || data.message || data.raw));
+                }
+            } catch (e) {
+                console.error("Fetch error:", e);
+                alert("Error de red/servidor");
+            }
         };
+    });
     </script>
 
 </body>

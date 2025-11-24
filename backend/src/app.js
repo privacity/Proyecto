@@ -17,11 +17,12 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Importar rutas del backend
 const tournamentRoutes = require('./routes/tournament.routes');
+const authRoutes = require('./routes/auth.routes'); // Importar rutas de autenticación
 
 
 // Montar rutas
 app.use("/api/tournaments", tournamentRoutes);
-
+app.use("/api/auth", authRoutes); // Montar rutas de autenticación
 // Ruta base de prueba
 app.get("/", (req, res) => {
     res.send("TorNet backend works");

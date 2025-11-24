@@ -95,3 +95,7 @@ ALTER TABLE Usuario MODIFY contrasenaCifrada VARCHAR(255) NULL;
 INSERT INTO Usuario (nombreCompleto, correoElectronico, contrasenaCifrada, rol)
 VALUES ('Organizador Demo', 'demo@demo.com', '12345', 'Organizador');
 
+ALTER TABLE Torneo MODIFY categoria ENUM('Infantil', 'Juvenil', 'Libre', 'Adulto', 'Veteranos', 'Femenil') NOT NULL;
+
+INSERT INTO Torneo (nombreTorneo, categoria, sede, fechaInicio, fechaFin, idOrganizador, convocatoriaArchivo)
+VALUES ('Torneo Prueba', 'Femenil', 'Sede Prueba', '2025-11-28', '2025-11-30', 1, 'convocatoria-1764011825408-553183537.png');

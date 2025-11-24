@@ -27,8 +27,9 @@
                 <tr>
                     <th>Nombre del Torneo</th>
                     <th>Estado</th>
-                    <th>Equipos</th>
-                    <th>Progreso</th>
+                    <th>Categoria</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -43,7 +44,7 @@
 </footer>
 
 <script>
-fetch('/tournament/current')
+fetch('/api/tournaments/current')
     .then(res => res.json())
     .then(torneos => {
         const body = document.getElementById('torneos-body');
@@ -51,7 +52,7 @@ fetch('/tournament/current')
         if (!torneos || torneos.length === 0) {
             body.innerHTML = `
                 <tr>
-                    <td colspan="5">No hay torneos registrados todavía.</td>
+                    <td colspan="6">No hay torneos registrados todavía.</td>
                 </tr>
             `;
             return;
@@ -63,13 +64,25 @@ fetch('/tournament/current')
             body.innerHTML += `
                 <tr>
                     <td>${t.nombreTorneo}</td>
-                    <td>${t.estado || 'Activo'}</td>
-                    <td>${t.equiposActuales || 0}/${t.equiposMax || 0}</td>
-                    <td>${t.progreso || 'Sin definir'}</td>
-                    <td><button class="btn-edit">Editar</button></td>
+                    <td>${t.estadoTorneo || 'Activo'}</td>
+                    <td>${t.categoria || 'Sin categoría'}</td>
+                    <td>${t.fechaInicio ? new Date(t.fechaInicio).toLocaleDateString() : 'Sin definir'}</td>
+                    <td>${t.fechaFin ? new Date(t.fechaFin).toLocaleDateString() : 'Sin definir'}</td>
+                    <td>
+                        <a href="/views/organizador/editTorneo.html?id=${t.idTorneo}" class="btn-edit">Editar</a>
+                    </td>
                 </tr>
             `;
         });
+    })
+    .catch(err => {
+        console.error("Error al obtener torneos:", err);
+        const body = document.getElementById('torneos-body');
+        body.innerHTML = `
+            <tr>
+                <td colspan="6">Error al cargar los torneos.</td>
+            </tr>
+        `;
     });
 </script>
 
