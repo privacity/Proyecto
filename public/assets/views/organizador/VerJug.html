@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jugadores - TorNet</title>
     <link rel="stylesheet" href="global.css">
-    <script src="https://kit.fontawesome.com/a2e860f5c3.js" crossorigin="anonymous"></script>
+    <!-- FontAwesome CDN mejorado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global.css">
 </head>
 
 <body>
@@ -33,7 +35,7 @@
                         <th>Posición</th>
                         <th>No. camiseta</th>
                         <th>Edad</th>
-                        <th>Documentos</th>
+                        <th class="documentos-header">Documentos</th>
                         <th>Estado</th>
                         <th>Acción</th>
                     </tr>
@@ -46,9 +48,14 @@
                         <td>Portero</td>
                         <td>1</td>
                         <td>19</td>
-                        <td><i class="fa-solid fa-download"></i></td>
-                        <td>Aceptado</td>
-                        <td><a class="btn-editar" href="editJug.html">Modificar</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-aceptado">Aceptado</span></td>
+                        <td><a class="btn-modificar" href="editJug.html">Modificar</a></td>
                     </tr>
 
                     <tr>
@@ -56,9 +63,14 @@
                         <td>Defensa</td>
                         <td>4</td>
                         <td>19</td>
-                        <td><i class="fa-solid fa-download"></i></td>
-                        <td>Pendiente</td>
-                        <td><a class="btn-editar" style="background:#c8f7c5;" href="editJug.html">Modificar</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-pendiente">Pendiente</span></td>
+                        <td><a class="btn-modificar" href="editJug.html">Modificar</a></td>
                     </tr>
 
                     <tr>
@@ -66,9 +78,14 @@
                         <td>Defensa</td>
                         <td>3</td>
                         <td>19</td>
-                        <td><i class="fa-solid fa-download"></i></td>
-                        <td>Rechazado</td>
-                        <td><a class="btn-editar" href="editJug.html">Modificar</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-rechazado">Rechazado</span></td>
+                        <td><a class="btn-modificar" href="editJug.html">Modificar</a></td>
                     </tr>
 
                     <tr>
@@ -76,9 +93,14 @@
                         <td>Medio</td>
                         <td>8</td>
                         <td>19</td>
-                        <td><i class="fa-solid fa-download"></i></td>
-                        <td>Aceptado</td>
-                        <td><a class="btn-editar" href="editJug.html">Modificar</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-aceptado">Aceptado</span></td>
+                        <td><a class="btn-modificar" href="editJug.html">Modificar</a></td>
                     </tr>
 
                     <tr>
@@ -86,9 +108,14 @@
                         <td>Medio</td>
                         <td>10</td>
                         <td>20</td>
-                        <td><i class="fa-solid fa-download"></i></td>
-                        <td>Aceptado</td>
-                        <td><a class="btn-editar" href="editJug.html">Modificar</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-aceptado">Aceptado</span></td>
+                        <td><a class="btn-modificar" href="editJug.html">Modificar</a></td>
                     </tr>
 
                     <tr>
@@ -96,9 +123,14 @@
                         <td>Delantero</td>
                         <td>9</td>
                         <td>20</td>
-                        <td><i class="fa-solid fa-download"></i></td>
-                        <td>Pendiente</td>
-                        <td><a class="btn-editar" href="editJug.html">Modificar</a></td>
+                        <td>
+                            <div class="action-buttons">
+                                <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-pendiente">Pendiente</span></td>
+                        <td><a class="btn-modificar" href="editJug.html">Modificar</a></td>
                     </tr>
 
                 </tbody>
@@ -112,12 +144,33 @@
         <div class="footer-content">
             <p class="footer-logo">TorNet</p>
             <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Función para simular la descarga de documentos
+        document.querySelectorAll('.download-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const documentType = this.getAttribute('title');
+                
+                // Crear un enlace temporal para descargar
+                const link = document.createElement('a');
+                link.href = '#'; // En una implementación real, aquí iría la URL del archivo
+                link.download = documentType.replace('Descargar ', '') + '.pdf';
+                
+                // Simular clic en el enlace
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Mostrar mensaje de confirmación
+                alert(`Descargando: ${documentType}`);
+            });
+        });
+    </script>
+
 </body>
 </html>
-
