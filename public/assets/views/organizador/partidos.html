@@ -1,0 +1,189 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cream Partido - Fútbol Manager Pro</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="global.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-title">
+                <i class="fas fa-futbol me-2"></i>TorNet
+            </div>
+            <div class="header-buttons">
+                <a href="ProgPartido.html" class="nav-btn">
+                    <i class="fas fa-arrow-left me-2"></i> Volver
+                </a>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <div class="container">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h1 class="h1 mb-2"><i></i>Crear partido</h1>
+                        <p class="text-muted">Complete los datos para programar un nuevo partido</p>
+                    </div>
+
+                    <form id="partidoForm">
+                        <!-- Equipos -->
+                        <div class="form-section">
+                            <h3 class="section-title">Equipos</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="equipo1" class="form-label">Equipo 1</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-tshirt"></i></span>
+                                            <select class="form-select" id="equipo1" required>
+                                                <option value="" selected disabled>Seleccione un equipo</option>
+                                                <!-- Las opciones se cargarán con JavaScript -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="equipo2" class="form-label">Equipo 2</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-tshirt"></i></span>
+                                            <select class="form-select" id="equipo2" required>
+                                                <option value="" selected disabled>Seleccione un equipo</option>
+                                                <!-- Las opciones se cargarán con JavaScript -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fecha y Hora -->
+                        <div class="form-section">
+                            <h3 class="section-title">Fecha y Hora</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="fechaPartido" class="form-label">Fecha del partido</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                            <input type="date" class="form-control" id="fechaPartido" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="horaPartido" class="form-label">Hora del partido</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                            <input type="time" class="form-control" id="horaPartido" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lugar y Cancha -->
+                        <div class="form-section">
+                            <h3 class="section-title">Lugar y Cancha</h3>
+                            <div class="form-group">
+                                <label for="cancha" class="form-label">Cancha asignada</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                    <select class="form-select" id="cancha" required>
+                                        <option value="" selected disabled>Seleccione una cancha</option>
+                                        <option value="cancha1">Cancha Principal - Estadio Municipal</option>
+                                        <option value="cancha2">Cancha Secundaria - Complejo Deportivo</option>
+                                        <option value="cancha3">Cancha 3 - Polideportivo Norte</option>
+                                        <option value="cancha4">Cancha 4 - Polideportivo Sur</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estado y Tipo -->
+                        <div class="form-section">
+                            <h3 class="section-title">Detalles del Partido</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="estado" class="form-label">Estado</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-flag"></i></span>
+                                            <select class="form-select" id="estado" required>
+                                                <option value="" selected disabled>Seleccione un estado</option>
+                                                <option value="pendiente">Pendiente</option>
+                                                <option value="cancelado">Cancelado</option>
+                                                <option value="jugado">Jugado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tipoPartido" class="form-label">Tipo de partido</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-trophy"></i></span>
+                                            <select class="form-select" id="tipoPartido" required>
+                                                <option value="" selected disabled>Seleccione un tipo</option>
+                                                <option value="fase-grupos">Fase de Grupos</option>
+                                                <option value="cuartos">Cuartos de Final</option>
+                                                <option value="semifinal">Semifinal</option>
+                                                <option value="final">Final</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Árbitro -->
+                        <div class="form-section">
+                            <h3 class="section-title">Árbitro</h3>
+                            <div class="form-group">
+                                <label for="arbitro" class="form-label">Árbitro principal</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-whistle"></i></span>
+                                    <select class="form-select" id="arbitro" required>
+                                        <option value="" selected disabled>Seleccione un árbitro</option>
+                                        <option value="arbitro1">Carlos Rodríguez</option>
+                                        <option value="arbitro2">María González</option>
+                                        <option value="arbitro3">Javier López</option>
+                                        <option value="arbitro4">Ana Martínez</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botones de acción -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="btnCancelar">
+                                <i class="fas fa-times me-2"></i>Cancelar
+                            </button>
+                            <button type="submit" class="btn-guardar">
+                                <i class="fas fa-save me-2"></i>Guardar Partido
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-title">TorNet</div>
+            <div class="footer-icons">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+    </html> 
