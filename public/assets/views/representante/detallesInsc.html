@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partidos Programados - TorNet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-title">
+            <i class="fas fa-futbol me-2"></i>TorNet
+        </div>
+
+        <div class="top-right-buttons">
+            <a href="convAplicadas.html" class="nav-btn">
+                <i class="fas fa-arrow-left me-2"></i> Volver
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <div class="container">
+            <div class="partidos-container">
+                <div class="page-header">
+                    <h1 class="page-title">Detalles de inscripción</h1>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="partidos-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre completo</th>
+                                <th>Posición</th>
+                                <th>No. camiseta</th>
+                                <th>Edad</th>
+                                <th>Documentos</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan Pérez</td>
+                                <td>Delantero</td>
+                                <td>9</td>
+                                <td>24</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                        <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge status-jugado">Aceptado</span></td>
+                                <td><button class="btn-registrar" onclick="abrirDetallesJugador('Juan Pérez', 'Delantero', '9', '24', 'Activo')">Ver detalles</button></td>
+                            </tr>
+                            <tr>
+                                <td>Carlos Gómez</td>
+                                <td>Defensa</td>
+                                <td>4</td>
+                                <td>28</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                        <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge status-pendiente">Pendiente</span></td>
+                                <td><button class="btn-registrar" onclick="abrirDetallesJugador('Carlos Gómez', 'Defensa', '4', '28', 'Pendiente')">Ver detalles</button></td>
+                            </tr>
+                            <tr>
+                                <td>Roberto Díaz</td>
+                                <td>Portero</td>
+                                <td>1</td>
+                                <td>30</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <i class="fas fa-file-pdf download-icon" title="Descargar documento de identidad"></i>
+                                        <i class="fas fa-file-image download-icon" title="Descargar foto"></i>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge status-cancelado">Rechazado</span></td>
+                                <td><button class="btn-registrar" onclick="abrirDetallesJugador('Roberto Díaz', 'Portero', '1', '30', 'Rechazado')">Ver detalles</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para detalles del jugador -->
+    <div id="modalDetallesJugador" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detalles del Jugador</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="observaciones-section">
+                    <h3 class="observaciones-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Observaciones sobre los documentos
+                    </h3>
+                    <ul class="observaciones-list" id="listaObservaciones">
+                        <!-- Las observaciones se cargarán dinámicamente -->
+                    </ul>
+                </div>
+                
+                <form id="formDetallesJugador">
+                    <div class="form-group">
+                        <label for="nombreCompleto" class="form-label">Nombre completo</label>
+                        <input type="text" class="form-control" id="nombreCompleto" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="posicion" class="form-label">Posición</label>
+                        <select class="form-control" id="posicion" required>
+                            <option value="">Selecciona una posición</option>
+                            <option value="Portero">Portero</option>
+                            <option value="Defensa">Defensa</option>
+                            <option value="Medio">Medio</option>
+                            <option value="Delantero">Delantero</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="numeroCamiseta" class="form-label">No. de camiseta</label>
+                        <input type="number" class="form-control" id="numeroCamiseta" min="1" max="99" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="edad" min="16" max="50" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Documentos actuales</label>
+                        <div class="documentos-actuales">
+                            <div class="documento-item">
+                                <i class="fas fa-file-pdf documento-icon"></i>
+                                <span class="documento-nombre">identificacion.pdf</span>
+                                <div class="documento-acciones">
+                                    <button type="button" class="btn-descargar" onclick="descargarDocumento('identificacion')">
+                                        <i class="fas fa-download"></i> Descargar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="documento-item">
+                                <i class="fas fa-image documento-icon"></i>
+                                <span class="documento-nombre">foto.jpg</span>
+                                <div class="documento-acciones">
+                                    <button type="button" class="btn-descargar" onclick="descargarDocumento('foto')">
+                                        <i class="fas fa-download"></i> Descargar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Resubir documentos</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="file-upload-container">
+                                    <label class="file-upload-area" for="nuevaIdentificacion">
+                                        <i class="fas fa-file-pdf upload-icon"></i>
+                                        <span class="upload-text">Subir nueva identificación</span>
+                                        <span class="upload-hint">Formato PDF, máximo 5MB</span>
+                                        <input type="file" id="nuevaIdentificacion" accept=".pdf" class="d-none">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="file-upload-container">
+                                    <label class="file-upload-area" for="nuevaFoto">
+                                        <i class="fas fa-image upload-icon"></i>
+                                        <span class="upload-text">Subir nueva foto</span>
+                                        <span class="upload-hint">Formato JPG/PNG, máximo 2MB</span>
+                                        <input type="file" id="nuevaFoto" accept="image/*" class="d-none">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-guardar">
+                            <i class="fas fa-save me-2"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-title">TorNet</div>
+        <div class="footer-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Variables globales
+        const modal = document.getElementById('modalDetallesJugador');
+        const closeBtn = document.querySelector('.close');
+        const formDetallesJugador = document.getElementById('formDetallesJugador');
+        const listaObservaciones = document.getElementById('listaObservaciones');
+        
+        // Observaciones predefinidas para diferentes estados
+        const observacionesPorEstado = {
+            'Activo': [
+                'Documentos completos y válidos',
+                'Foto cumple con los requisitos',
+                'Identificación vigente'
+            ],
+            'Pendiente': [
+                'Foto no cumple con los requisitos de tamaño',
+                'Falta certificado médico',
+                'Identificación vencida'
+            ],
+            'Rechazado': [
+                'Foto no corresponde con la identificación',
+                'Identificación ilegible',
+                'Falta documentación requerida'
+            ]
+        };
+        
+        // Abrir modal al hacer clic en "Ver detalles"
+        function abrirDetallesJugador(nombre, posicion, numeroCamiseta, edad, estado) {
+            // Llenar los campos del formulario
+            document.getElementById('nombreCompleto').value = nombre;
+            document.getElementById('posicion').value = posicion;
+            document.getElementById('numeroCamiseta').value = numeroCamiseta;
+            document.getElementById('edad').value = edad;
+            
+            // Cargar observaciones según el estado
+            cargarObservaciones(estado);
+            
+            // Mostrar modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Cargar observaciones según el estado del jugador
+        function cargarObservaciones(estado) {
+            listaObservaciones.innerHTML = '';
+            
+            const observaciones = observacionesPorEstado[estado] || [];
+            
+            observaciones.forEach(obs => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${obs}`;
+                listaObservaciones.appendChild(li);
+            });
+            
+            // Si no hay observaciones, mostrar un mensaje
+            if (observaciones.length === 0) {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-check-circle"></i> No hay observaciones pendientes`;
+                listaObservaciones.appendChild(li);
+            }
+        }
+        
+        // Cerrar modal
+        closeBtn.addEventListener('click', cerrarModal);
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                cerrarModal();
+            }
+        });
+        
+        function cerrarModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Enviar formulario de detalles
+        formDetallesJugador.addEventListener('submit', function(e) {
+            e.preventDefault();
+            guardarCambios();
+        });
+        
+        // Función para guardar los cambios
+        function guardarCambios() {
+            const nombre = document.getElementById('nombreCompleto').value;
+            const posicion = document.getElementById('posicion').value;
+            const numeroCamiseta = document.getElementById('numeroCamiseta').value;
+            const edad = document.getElementById('edad').value;
+            const nuevaIdentificacion = document.getElementById('nuevaIdentificacion').files[0];
+            const nuevaFoto = document.getElementById('nuevaFoto').files[0];
+            
+            // Validaciones básicas
+            if (!posicion || !numeroCamiseta || !edad) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+            
+            // Aquí iría la lógica para guardar los cambios en el servidor
+            // Por ahora, solo mostramos un mensaje de éxito
+            
+            let mensaje = `Cambios guardados para ${nombre}:\n`;
+            mensaje += `- Posición: ${posicion}\n`;
+            mensaje += `- Número de camiseta: ${numeroCamiseta}\n`;
+            mensaje += `- Edad: ${edad}\n`;
+            
+            if (nuevaIdentificacion) {
+                mensaje += `- Nueva identificación: ${nuevaIdentificacion.name}\n`;
+            }
+            
+            if (nuevaFoto) {
+                mensaje += `- Nueva foto: ${nuevaFoto.name}\n`;
+            }
+            
+            alert(mensaje);
+            
+            // Cerrar modal
+            cerrarModal();
+        }
+        
+        // Función para simular la descarga de documentos
+        function descargarDocumento(tipo) {
+            alert(`Iniciando descarga del documento: ${tipo}`);
+            // Aquí iría la lógica real para descargar el archivo
+        }
+        
+        // Efectos visuales para las áreas de subida de archivos
+        document.querySelectorAll('.file-upload-area').forEach(area => {
+            const input = area.querySelector('input[type="file"]');
+            
+            input.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    area.style.borderColor = 'var(--success-color)';
+                    area.style.backgroundColor = 'rgba(40, 167, 69, 0.05)';
+                    
+                    const uploadText = area.querySelector('.upload-text');
+                    uploadText.textContent = `${this.files[0].name}`;
+                } else {
+                    area.style.borderColor = '';
+                    area.style.backgroundColor = '';
+                    
+                    const uploadText = area.querySelector('.upload-text');
+                    if (input.id === 'nuevaIdentificacion') {
+                        uploadText.textContent = 'Subir nueva identificación';
+                    } else {
+                        uploadText.textContent = 'Subir nueva foto';
+                    }
+                }
+            });
+            
+            area.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('drag-over');
+            });
+            
+            area.addEventListener('dragleave', function() {
+                this.classList.remove('drag-over');
+            });
+            
+            area.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('drag-over');
+                
+                if (e.dataTransfer.files.length > 0) {
+                    input.files = e.dataTransfer.files;
+                    
+                    // Disparar el evento change manualmente
+                    const event = new Event('change', { bubbles: true });
+                    input.dispatchEvent(event);
+                }
+            });
+        });
+        
+        // Inicializar eventos de descarga para los iconos de la tabla
+        document.querySelectorAll('.download-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const documentType = this.getAttribute('title');
+                alert(`Iniciando descarga de: ${documentType}`);
+            });
+        });
+    </script>
+</body>
+</html>
