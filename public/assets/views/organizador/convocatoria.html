@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Convocatoria - TorNet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-title">
+            <i class="fas fa-futbol me-2"></i>TorNet
+        </div>
+        <div class="header-buttons">
+            <a href="editTorneo.html" class="nav-btn">
+                <i class="fas fa-arrow-left me-2"></i> Volver
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <div class="container">
+            <div class="editor-container">
+                <div class="editor-header">
+                    <h1 class="editor-title">Editar convocatoria</h1>
+                </div>
+
+                <form id="convocatoriaForm">
+                    <!-- Nuevo Nombre del Tronco -->
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="nombreTronco" class="form-label">Nuevo nombre del torneo</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                <input type="text" class="form-control" id="nombreTronco" placeholder="Ingreso al nuevo nombre del tronco" required>
+                            </div>
+                            <div class="form-text">Ingresa el nuevo nombre del torneo</div>
+                        </div>
+                    </div>
+
+                    <!-- Nueva Citagasta -->
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="nuevaCitagasta" class="form-label">Nueva categoria</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" id="nuevaCitagasta" placeholder="Ingreso la nueva citagasta" required>
+                            </div>
+                            <div class="form-text">Ingresa la nueva categoria</div>
+                        </div>
+                    </div>
+
+                    <!-- Sección para subir archivos de imagen -->
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label class="form-label">Subir imagen de convocatoria</label>
+                            <div class="file-upload-container">
+                                <div class="file-upload-area" id="fileUploadArea">
+                                    <div class="upload-content">
+                                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                        <p class="upload-text">Haz clic para seleccionar una imagen</p>
+                                        <p class="upload-hint">Formatos aceptados: JPG, PNG, GIF, BMP (Máx. 5MB)</p>
+                                        <input type="file" id="imagenConvocatoria" accept=".jpg,.jpeg,.png,.gif,.bmp" style="display: none;">
+                                        <button type="button" class="btn-select-file" id="btnSelectFile">
+                                            <i class="fas fa-folder-open me-2"></i>Seleccionar archivo
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="file-preview" id="filePreview" style="display: none;">
+                                    <img id="previewImage" src="" alt="Vista previa">
+                                    <div class="file-info">
+                                        <span id="fileName"></span>
+                                        <span id="fileSize"></span>
+                                    </div>
+                                    <button type="button" class="btn-remove-file" id="btnRemoveFile">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-text">Solo se permiten archivos de imagen (JPG, PNG, GIF, BMP)</div>
+                        </div>
+                    </div>
+
+                    <!-- Separador -->
+                    <div class="form-divider"></div>
+
+                    <!-- Botón Guardar Cambios -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-guardar-cambios">
+                            <i class="fas fa-save me-2"></i>Guardar cambios
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Footer del editor -->
+                <div class="editor-footer">
+                    <div class="footer-content">
+                        <span class="footer-text">Tornet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Global -->
+    <footer class="footer">
+        <div class="footer-title">TorNet</div>
+        <div class="footer-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Funcionalidad para el Editor de Convocatoria
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar eventos del formulario
+            configurarEventos();
+            
+            // Configurar eventos para subida de archivos
+            configurarSubidaArchivos();
+            
+            // Cargar datos existentes si los hay
+            cargarDatosExistentes();
+        });
+
+        function configurarEventos() {
+            const formulario = document.getElementById('convocatoriaForm');
+            
+            // Evento para el envío del formulario
+            formulario.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validar formulario
+                if (validarFormulario()) {
+                    // Mostrar confirmación antes de guardar
+                    mostrarConfirmacionGuardado();
+                }
+            });
+            
+            // Evento para cambios en tiempo real (opcional)
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('input', function() {
+                    // Podríamos guardar automáticamente en localStorage
+                    guardarBorrador();
+                });
+            });
+        }
+
+        function configurarSubidaArchivos() {
+            const fileInput = document.getElementById('imagenConvocatoria');
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const btnSelectFile = document.getElementById('btnSelectFile');
+            const filePreview = document.getElementById('filePreview');
+            const previewImage = document.getElementById('previewImage');
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const btnRemoveFile = document.getElementById('btnRemoveFile');
+            
+            // Abrir explorador de archivos al hacer clic en el área o botón
+            fileUploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            btnSelectFile.addEventListener('click', function(e) {
+                e.stopPropagation(); // Evitar que se dispare el evento del área
+                fileInput.click();
+            });
+            
+            // Manejar selección de archivo
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validar tipo de archivo
+                    const tiposPermitidos = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+                    if (!tiposPermitidos.includes(file.type)) {
+                        mostrarAlerta('Error', 'Solo se permiten archivos de imagen (JPG, PNG, GIF, BMP)', 'error');
+                        return;
+                    }
+                    
+                    // Validar tamaño (5MB máximo)
+                    if (file.size > 5 * 1024 * 1024) {
+                        mostrarAlerta('Error', 'El archivo es demasiado grande. Máximo 5MB permitidos.', 'error');
+                        return;
+                    }
+                    
+                    // Mostrar previsualización
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        fileName.textContent = file.name;
+                        fileSize.textContent = formatFileSize(file.size);
+                        filePreview.style.display = 'block';
+                        fileUploadArea.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Eliminar archivo seleccionado
+            btnRemoveFile.addEventListener('click', function() {
+                fileInput.value = '';
+                filePreview.style.display = 'none';
+                fileUploadArea.style.display = 'flex';
+            });
+            
+            // Efectos de arrastrar y soltar
+            fileUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                fileUploadArea.classList.add('drag-over');
+            });
+            
+            fileUploadArea.addEventListener('dragleave', function() {
+                fileUploadArea.classList.remove('drag-over');
+            });
+            
+            fileUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                fileUploadArea.classList.remove('drag-over');
+                
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    const event = new Event('change');
+                    fileInput.dispatchEvent(event);
+                }
+            });
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' bytes';
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            else return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+
+        function cargarDatosExistentes() {
+            // Cargar datos guardados del localStorage
+            const datosGuardados = localStorage.getItem('convocatoriaDatos');
+            
+            if (datosGuardados) {
+                const datos = JSON.parse(datosGuardados);
+                
+                // Rellenar campos con datos guardados
+                document.getElementById('nombreTronco').value = datos.nombreTronco || '';
+                document.getElementById('nuevaCitagasta').value = datos.nuevaCitagasta || '';
+                document.getElementById('salaConvocatoria').value = datos.salaConvocatoria || '';
+                document.getElementById('ingresoConvocatoria').value = datos.ingresoConvocatoria || '';
+                
+                console.log('Datos de convocatoria cargados desde almacenamiento local');
+            }
+        }
+
+        function validarFormulario() {
+            const campos = [
+                'nombreTronco',
+                'nuevaCitagasta', 
+                'salaConvocatoria',
+                'ingresoConvocatoria'
+            ];
+            
+            for (let id of campos) {
+                const valor = document.getElementById(id).value.trim();
+                if (valor === '') {
+                    mostrarAlerta('Error', `Por favor, complete el campo: ${getNombreCampo(id)}`, 'error');
+                    document.getElementById(id).focus();
+                    return false;
+                }
+            }
+            
+            // Validación adicional para el texto de convocatoria
+            const textoConvocatoria = document.getElementById('ingresoConvocatoria').value;
+            if (textoConvocatoria.length < 10) {
+                mostrarAlerta('Error', 'El texto de la convocatoria debe tener al menos 10 caracteres', 'error');
+                document.getElementById('ingresoConvocatoria').focus();
+                return false;
+            }
+            
+            return true;
+        }
+
+        function getNombreCampo(id) {
+            const nombres = {
+                'nombreTronco': 'Nuevo Nombre del Tronco',
+                'nuevaCitagasta': 'Nueva Citagasta',
+                'salaConvocatoria': 'Sala la nueva convocatoria',
+                'ingresoConvocatoria': 'Ingreso la convocatoria'
+            };
+            
+            return nombres[id] || id;
+        }
+
+        function mostrarConfirmacionGuardado() {
+            // Obtener datos del formulario
+            const datos = obtenerDatosFormulario();
+            
+            // Verificar si hay una imagen seleccionada
+            const fileInput = document.getElementById('imagenConvocatoria');
+            const tieneImagen = fileInput.files.length > 0;
+            
+            // Crear mensaje de confirmación
+            let mensajeConfirmacion = `
+                ¿Está seguro de que desea guardar los siguientes cambios?
+                
+                • Nombre del Tronco: ${datos.nombreTronco}
+                • Nueva Citagasta: ${datos.nuevaCitagasta}
+                • Sala de Convocatoria: ${datos.salaConvocatoria}
+            `;
+            
+            if (tieneImagen) {
+                mensajeConfirmacion += `\n• Imagen: ${fileInput.files[0].name}`;
+            }
+            
+            mensajeConfirmacion += `\n\nLa convocatoria será actualizada con esta información.`;
+            
+            // Mostrar confirmación
+            if (confirm(mensajeConfirmacion)) {
+                guardarCambios(datos);
+            } else {
+                mostrarAlerta('Cancelado', 'Los cambios no se han guardado', 'info');
+            }
+        }
+
+        function obtenerDatosFormulario() {
+            return {
+                nombreTronco: document.getElementById('nombreTronco').value,
+                nuevaCitagasta: document.getElementById('nuevaCitagasta').value,
+                salaConvocatoria: document.getElementById('salaConvocatoria').value,
+                ingresoConvocatoria: document.getElementById('ingresoConvocatoria').value,
+                fechaActualizacion: new Date().toLocaleString()
+            };
+        }
+
+        function guardarCambios(datos) {
+            // Mostrar animación de carga
+            mostrarCargando();
+            
+            // Simular tiempo de guardado
+            setTimeout(() => {
+                // Guardar en localStorage
+                localStorage.setItem('convocatoriaDatos', JSON.stringify(datos));
+                
+                // También podríamos enviar al servidor
+                console.log('Datos a guardar en servidor:', datos);
+                
+                // Procesar la imagen si hay una seleccionada
+                const fileInput = document.getElementById('imagenConvocatoria');
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    console.log('Imagen a subir:', file.name, file.size);
+                    // Aquí normalmente enviaríamos la imagen al servidor
+                }
+                
+                // Ocultar carga
+                ocultarCargando();
+                
+                // Mostrar mensaje de éxito
+                mostrarAlerta('¡Éxito!', 'Los cambios se han guardado correctamente', 'success');
+                
+                // Opcional: Limpiar formulario después de guardar
+                // document.getElementById('convocatoriaForm').reset();
+                
+            }, 1500);
+        }
+
+        function guardarBorrador() {
+            // Guardar borrador automáticamente en localStorage
+            const datos = obtenerDatosFormulario();
+            localStorage.setItem('convocatoriaBorrador', JSON.stringify(datos));
+        }
+
+        function mostrarCargando() {
+            const boton = document.querySelector('.btn-guardar-cambios');
+            const textoOriginal = boton.innerHTML;
+            
+            boton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Guardando...';
+            boton.disabled = true;
+            
+            // Restaurar después de 2 segundos (por si acaso)
+            setTimeout(() => {
+                boton.innerHTML = textoOriginal;
+                boton.disabled = false;
+            }, 2000);
+        }
+
+        function ocultarCargando() {
+            const boton = document.querySelector('.btn-guardar-cambios');
+            boton.innerHTML = '<i class="fas fa-save me-2"></i>Guardar cambios';
+            boton.disabled = false;
+        }
+
+        function mostrarAlerta(titulo, mensaje, tipo) {
+            // Crear alerta personalizada
+            const alertaDiv = document.createElement('div');
+            alertaDiv.className = `alert alert-${tipo === 'error' ? 'danger' : tipo === 'success' ? 'success' : 'info'} alert-dismissible fade show`;
+            alertaDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                min-width: 300px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            `;
+            
+            // Icono según el tipo
+            let icono = '';
+            if (tipo === 'success') icono = 'fa-check-circle';
+            else if (tipo === 'error') icono = 'fa-exclamation-circle';
+            else icono = 'fa-info-circle';
+            
+            alertaDiv.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas ${icono} me-2 fs-5"></i>
+                    <div>
+                        <strong>${titulo}</strong>
+                        <div class="small">${mensaje}</div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(alertaDiv);
+            
+            // Auto-eliminar después de 5 segundos
+            setTimeout(() => {
+                if (alertaDiv.parentNode) {
+                    alertaDiv.remove();
+                }
+            }, 5000);
+        }
+
+        // Función para cargar un borrador previo (opcional)
+        function cargarBorrador() {
+            const borrador = localStorage.getItem('convocatoriaBorrador');
+            if (borrador && confirm('¿Desea cargar el borrador guardado automáticamente?')) {
+                const datos = JSON.parse(borrador);
+                document.getElementById('nombreTronco').value = datos.nombreTronco || '';
+                document.getElementById('nuevaCitagasta').value = datos.nuevaCitagasta || '';
+                document.getElementById('salaConvocatoria').value = datos.salaConvocatoria || '';
+                document.getElementById('ingresoConvocatoria').value = datos.ingresoConvocatoria || '';
+            }
+        }
+
+        // Exponer función globalmente
+        window.cargarBorrador = cargarBorrador;
+    </script>
+</body>
+</html>
