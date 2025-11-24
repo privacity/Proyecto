@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/tanked.css" />
+    <title>Torneos Actuales</title>
+</head>
+
+<body>
+
+<header class="main-header">
+    <div class="logo">TorNet</div>
+    <a href="/views/organizador/organizador.html" class="btn-header">Inicio</a>
+</header>
+
+
+
+
+<main class="main-container">
+    <h1 class="titulo">Torneos Actuales</h1>
+    <p class="subtitulo">Visualiza y administra tus torneos activos</p>
+
+    <div class="tabla-contenedor">
+        <table>
+            <thead class="tabla-header">
+                <tr>
+                    <th>Nombre del Torneo</th>
+                    <th>Estado</th>
+                    <th>Equipos</th>
+                    <th>Progreso</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+
+            <tbody id="torneos-body"></tbody>
+        </table>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>TorNet</p>
+</footer>
+
+<script>
+fetch('/tournament/current')
+    .then(res => res.json())
+    .then(torneos => {
+        const body = document.getElementById('torneos-body');
+
+        if (!torneos || torneos.length === 0) {
+            body.innerHTML = `
+                <tr>
+                    <td colspan="5">No hay torneos registrados todavía.</td>
+                </tr>
+            `;
+            return;
+        }
+
+        body.innerHTML = "";
+
+        torneos.forEach(t => {
+            body.innerHTML += `
+                <tr>
+                    <td>${t.nombreTorneo}</td>
+                    <td>${t.estado || 'Activo'}</td>
+                    <td>${t.equiposActuales || 0}/${t.equiposMax || 0}</td>
+                    <td>${t.progreso || 'Sin definir'}</td>
+                    <td><button class="btn-edit">Editar</button></td>
+                </tr>
+            `;
+        });
+    });
+</script>
+
+
+</body>
+</html>
