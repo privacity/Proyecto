@@ -58,9 +58,6 @@ body::before {
     pointer-events: none;
 }
 
-/******************************
-             BOTONES
-******************************/
 .nav-btn,
 .btn-login,
 .btn-register,
@@ -389,30 +386,8 @@ tbody tr:hover {
 }
 
 /***********************
-       FORMULARIO
-***********************/
-.form-section {}
-
-.input-group {}
-
-.input-group-text {
-    background-color: var(--light-bg);
-    border: 2px solid var(--border-color);
-    border-right: none;
-    border-radius: 10px 0 0 10px;
-    color: var(--text-medium);
-}
-
-.input-group .form-control {
-    border-left: none;
-    border-radius: 0 10px 10px 0;
-}
-
-/***********************
    SUBIDA DE ARCHIVOS
 ***********************/
-.file-upload-container {}
-
 .file-upload-area {
     border: 2px dashed var(--border-color);
     border-radius: 10px;
@@ -485,8 +460,6 @@ tbody tr:hover {
 /***********************
       BARRA LATERAL
 ***********************/
-.info-sidebar {}
-
 .info-card {
     background: var(--light-bg);
     border-radius: 10px;
@@ -520,8 +493,6 @@ tbody tr:hover {
     position: absolute;
     left: 0;
 }
-
-.form-check {}
 
 .form-check-input:checked {
     background-color: var(--primary-color);
@@ -1004,194 +975,10 @@ tbody tr:hover {
 
 .form-section {
     margin-bottom: 2rem;
-}
-
-.form-section .section-title {
-    font-size: 1.3rem;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Grupos de Input Mejorados */
-.input-group {
-    margin-bottom: 0.5rem;
-}
-
-.input-group-text {
-    background: var(--light-bg);
-    border: 2px solid var(--border-color);
-    border-right: none;
-    color: var(--text-medium);
-    min-width: 45px;
-    justify-content: center;
-}
-
-.form-control {
-    border: 2px solid var(--border-color);
-    border-left: none;
-    transition: all 0.3s ease;
-}
-
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(56, 91, 255, 0.1);
-}
-
-/* Previsualización */
-.preview-section {
-    background: var(--light-bg);
-    border-radius: 10px;
     padding: 1.5rem;
+    background-color: var(--light-bg);
+    border-radius: 10px;
     border-left: 4px solid var(--primary-color);
-}
-
-.preview-card {
-    background: var(--white);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.preview-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.preview-item:last-child {
-    border-bottom: none;
-}
-
-.preview-item strong {
-    color: var(--text-dark);
-    font-weight: 600;
-}
-
-.preview-item span {
-    color: var(--text-medium);
-    font-weight: 500;
-}
-
-/* Botones Específicos */
-.btn-publish {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    border: none;
-    padding: 0.75rem 2rem;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 4px 15px rgba(56, 91, 255, 0.3);
-}
-
-.btn-publish:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(56, 91, 255, 0.4);
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-}
-
-.btn-secondary {
-    background: var(--text-light);
-    border: none;
-    padding: 0.75rem 2rem;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.btn-secondary:hover {
-    background: var(--text-medium);
-    transform: translateY(-1px);
-}
-
-/* Estados de Validación */
-.is-valid {
-    border-color: var(--success-color) !important;
-}
-
-.is-invalid {
-    border-color: var(--error-color) !important;
-}
-
-.valid-feedback {
-    color: var(--success-color);
-    font-size: 0.875rem;
-    display: none;
-}
-
-.invalid-feedback {
-    color: var(--error-color);
-    font-size: 0.875rem;
-    display: none;
-}
-
-.was-validated .form-control:valid ~ .valid-feedback,
-.was-validated .form-control:invalid ~ .invalid-feedback {
-    display: block;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .preview-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    
-    .preview-item strong {
-        font-size: 0.9rem;
-    }
-    
-    .btn-publish, .btn-secondary {
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
-    
-    .d-flex.justify-content-end {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 576px) {
-    .form-section .section-title {
-        font-size: 1.1rem;
-    }
-    
-    .preview-card {
-        padding: 1rem;
-    }
-    
-    .preview-section {
-        padding: 1rem;
-    }
-    
-    .input-group-text {
-        min-width: 40px;
-        font-size: 0.9rem;
-    }
-}
-
-/******************************
-    INFORMACIÓN GENERAL TORNEO
-******************************/
-
-/* Formulario Específico */
-.form-text {
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-}
-
-.form-section {
-    margin-bottom: 2rem;
 }
 
 .form-section .section-title {
@@ -1484,36 +1271,8 @@ tbody tr:hover {
 /******************************
          FORM SECTIONS
 ******************************/
-.form-section {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: var(--light-bg);
-    border-radius: 10px;
-    border-left: 4px solid var(--primary-color);
-}
-
-.section-title {
-    color: var(--secondary-color);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-}
-
 .form-group {
     margin-bottom: 1.5rem;
-}
-
-.input-group {
-    margin-bottom: 0.5rem;
-}
-
-.input-group-text {
-    background-color: var(--light-bg);
-    border: 2px solid var(--border-color);
-    border-right: none;
-    color: var(--text-medium);
-    min-width: 45px;
-    justify-content: center;
 }
 
 .form-control, .form-select {
@@ -1569,7 +1328,6 @@ tbody tr:hover {
 }
 
 /* Estilos específicos para la página de partidos programados */
-
 .partidos-container {
     max-width: 1200px;
     margin: 2rem auto;
@@ -1598,12 +1356,6 @@ tbody tr:hover {
 .page-controls {
     display: flex;
     gap: 1rem;
-    align-items: center;
-}
-
-.search-box {
-    position: relative;
-    display: flex;
     align-items: center;
 }
 
@@ -1696,7 +1448,6 @@ tbody tr:hover {
     color: var(--warning-color);
 }
 
-
 .status-jugado {
     background-color: rgba(40, 167, 69, 0.15);
     color: var(--success-color);
@@ -1711,26 +1462,6 @@ tbody tr:hover {
 .action-buttons {
     display: flex;
     gap: 0.5rem;
-}
-
-.btn-editar, .btn-eliminar {
-    border: none;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: all 0.3s;
-    font-weight: 500;
-}
-
-.btn-editar {
-    background-color: var(--edit-bg);
-    color: var(--edit-color);
-}
-
-.btn-eliminar {
-    background-color: var(--delete-bg);
-    color: var(--delete-color);
 }
 
 .btn-editar:hover {
@@ -1874,41 +1605,10 @@ tbody tr:hover {
 }
 
 /* Estilos específicos para la página de registrar resultados */
-
-.form-container {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.15);
-}
-
-.form-header {
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-}
-
 .form-header h1 {
     color: var(--secondary-color);
     font-weight: 700;
     font-size: 2rem;
-}
-
-.form-section {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: var(--light-bg);
-    border-radius: 10px;
-    border-left: 4px solid var(--primary-color);
-}
-
-.section-title {
-    color: var(--secondary-color);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
 }
 
 .equipo-section {
@@ -1916,43 +1616,6 @@ tbody tr:hover {
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-label {
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.input-group {
-    margin-bottom: 0.5rem;
-}
-
-.input-group-text {
-    background-color: var(--light-bg);
-    border: 2px solid var(--border-color);
-    border-right: none;
-    color: var(--text-medium);
-    min-width: 45px;
-    justify-content: center;
-}
-
-.form-control {
-    border: 2px solid var(--border-color);
-    border-left: none;
-    transition: all 0.3s ease;
-    padding: 0.75rem 1rem;
-    border-radius: 0 8px 8px 0;
-}
-
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(56, 91, 255, 0.1);
 }
 
 /* Botones Guardar secundarios */
@@ -2011,17 +1674,8 @@ tbody tr:hover {
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
-    .form-container {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
-    
     .form-header h1 {
         font-size: 1.5rem;
-    }
-    
-    .form-section {
-        padding: 1rem;
     }
     
     .equipo-section {
@@ -2045,7 +1699,6 @@ tbody tr:hover {
 }
 
 /* Estilos específicos para la página de detalles del partido */
-
 .details-container {
     max-width: 800px;
     margin: 2rem auto;
@@ -2074,13 +1727,6 @@ tbody tr:hover {
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 1rem;
     margin-bottom: 2rem;
-}
-
-.page-title {
-    color: var(--secondary-color);
-    font-weight: 700;
-    font-size: 2rem;
-    margin: 0;
 }
 
 /* Contenedor de eventos */
@@ -2258,5 +1904,455 @@ tbody tr:hover {
     
     .event-details {
         font-size: 0.9rem;
+    }
+}
+
+/* Estilos específicos para el Editor de Convocatoria */
+.editor-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.15);
+}
+
+.editor-header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.editor-title {
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Botón Guardar Cambios */
+.btn-guardar-cambios {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(56, 91, 255, 0.3);
+    margin: 0 auto;
+}
+
+.btn-guardar-cambios:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 91, 255, 0.4);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Footer del editor */
+.editor-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-text {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .editor-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .editor-title {
+        font-size: 1.5rem;
+    }
+    
+    .btn-guardar-cambios {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .editor-title {
+        font-size: 1.3rem;
+    }
+    
+    .form-label {
+        font-size: 0.95rem;
+    }
+    
+    .form-text {
+        font-size: 0.8rem;
+    }
+}
+
+.download-icon {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.download-icon:hover {
+    background-color: rgba(56, 91, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.status-aceptado {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: var(--success-color);
+}
+
+.status-rechazado {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: var(--error-color);
+}
+
+.btn-modificar {
+    background-color: var(--edit-bg);
+    color: var(--edit-color);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-modificar:hover {
+    background-color: var(--edit-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.player-item {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.player-item.inscrito {
+    border-left: 4px solid var(--success-color);
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.player-number {
+    background-color: var(--primary-color);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.player-label {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.btn-inscribir-jugador {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(56, 91, 255, 0.3);
+}
+
+.btn-inscribir-jugador:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 91, 255, 0.4);
+}
+
+.player-status {
+    min-height: 20px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.player-status.inscrito {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.team-info {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.total-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.total-title {
+    color: var(--secondary-color);
+    font-weight: 700;
+    margin: 0;
+}
+
+.total-value {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 5% auto;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.15);
+    animation: slideIn 0.3s;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.close {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ddd;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .players-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .player-item {
+        padding: 1rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .players-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-info {
+        max-width: 100%;
+    }
+}
+
+/* Observaciones */
+.observaciones-section {
+    background-color: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--warning-color);
+    margin-bottom: 1.5rem;
+}
+
+.observaciones-title {
+    color: var(--warning-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.observaciones-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.observaciones-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.observaciones-list li:last-child {
+    border-bottom: none;
+}
+
+.observaciones-list li i {
+    color: var(--warning-color);
+}
+
+/* Documentos */
+.documentos-actuales {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.documento-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    flex: 1;
+}
+
+.documento-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.documento-nombre {
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.documento-acciones {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-descargar {
+    background-color: var(--edit-bg);
+    color: var(--edit-color);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.btn-descargar:hover {
+    background-color: var(--edit-color);
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    .modal-body {
+        max-height: calc(100vh - 100px);
+    }
+    
+    .documentos-actuales {
+        flex-direction: column;
     }
 }
