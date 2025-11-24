@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Resultados - TorNet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-title">
+            <i class="fas fa-futbol me-2"></i>TorNet
+        </div>
+        <div class="header-buttons">
+            <a href="partidos_programados.html" class="nav-btn">
+                <i class="fas fa-arrow-left me-2"></i> Volver
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1 class="h1 mb-2">Registrar resultados de partido</h1>
+                </div>
+
+                <form id="resultadoForm">
+                    <!-- Sección de Equipos -->
+                    <div class="form-section">
+                        <div class="row">
+                            <!-- Equipo A -->
+                            <div class="col-md-6">
+                                <div class="equipo-section">
+                                    <h3 class="section-title">Equipo A</h3>
+                                    <div class="form-group">
+                                        <label for="equipoA_goles" class="form-label">Cantidad de goles</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-futbol"></i></span>
+                                            <input type="number" class="form-control" id="equipoA_goles" min="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="equipoA_amarillas" class="form-label">Nombre del anotador</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-card"></i></span>
+                                            <input type="text" class="form-control" id="equipoA_amarillas" min="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="equipoA_rojas" class="form-label">No. camiseta</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-card"></i></span>
+                                            <input type="text" class="form-control" id="equipoA_rojas" min="0" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Equipo B -->
+                            <div class="col-md-6">
+                                <div class="equipo-section">
+                                    <h3 class="section-title">Equipo B</h3>
+                                    <div class="form-group">
+                                        <label for="equipoB_goles" class="form-label">Cantidad de goles</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-futbol"></i></span>
+                                            <input type="number" class="form-control" id="equipoB_goles" min="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="equipoB_amarillas" class="form-label">Nombre del anotador</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-card"></i></span>
+                                            <input type="text" class="form-control" id="equipoB_amarillas" min="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="equipoB_rojas" class="form-label">No. de camiseta</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-card"></i></span>
+                                            <input type="text" class="form-control" id="equipoB_rojas" min="0" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección Escala -->
+                    <div class="form-section">
+                        <h3 class="section-title" class="form-label">Estado</h3>
+                        <div class="form-group">
+                            <select class="form-control" id="estado" name="estado">
+                                <option value="registrado" selected>Estado</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="aprobado">Registrado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Botón Registrar -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-registrar">
+                            <i class="fas fa-clipboard-check me-2"></i>Registrar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-title">Tonlet</div>
+        <div class="footer-icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+                // Funcionalidad para la página de registrar resultados
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar eventos del formulario
+            configurarEventos();
+            
+            // Cargar datos de ejemplo (opcional)
+            cargarDatosEjemplo();
+        });
+
+        function configurarEventos() {
+            const formulario = document.getElementById('resultadoForm');
+            
+            // Evento para el envío del formulario
+            formulario.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validar formulario
+                if (validarFormulario()) {
+                    // Mostrar confirmación antes de registrar
+                    mostrarConfirmacionRegistro();
+                }
+            });
+            
+            // Evento para cambios en los campos de goles (actualizar automáticamente el resultado)
+            document.getElementById('equipoA_goles').addEventListener('change', actualizarResultado);
+            document.getElementById('equipoB_goles').addEventListener('change', actualizarResultado);
+        }
+
+        function cargarDatosEjemplo() {
+            // Datos de ejemplo para facilitar las pruebas
+            const datosEjemplo = {
+                equipoA_goles: 2,
+                equipoA_amarillas: "Juan Pérez",
+                equipoA_rojas: "10",
+                equipoB_goles: 1,
+                equipoB_amarillas: "Carlos López",
+                equipoB_rojas: "7"
+            };
+            
+            // Si no hay datos guardados, cargar ejemplo (opcional)
+            if (!localStorage.getItem('resultadosGuardados')) {
+                Object.keys(datosEjemplo).forEach(key => {
+                    const elemento = document.getElementById(key);
+                    if (elemento) {
+                        elemento.value = datosEjemplo[key];
+                    }
+                });
+            }
+        }
+
+        function validarFormulario() {
+            // Validar campos numéricos de goles
+            const golesA = document.getElementById('equipoA_goles').value;
+            const golesB = document.getElementById('equipoB_goles').value;
+            
+            if (golesA === '' || golesB === '' || parseInt(golesA) < 0 || parseInt(golesB) < 0) {
+                mostrarAlerta('Error', 'Por favor, ingrese una cantidad válida de goles para ambos equipos', 'error');
+                return false;
+            }
+            
+            // Validar campos de texto
+            const camposTexto = [
+                'equipoA_amarillas', 'equipoA_rojas',
+                'equipoB_amarillas', 'equipoB_rojas'
+            ];
+            
+            for (let id of camposTexto) {
+                const valor = document.getElementById(id).value.trim();
+                if (valor === '') {
+                    mostrarAlerta('Error', 'Por favor, complete todos los campos de texto', 'error');
+                    document.getElementById(id).focus();
+                    return false;
+                }
+            }
+            
+            // Validar que los números de camiseta sean numéricos
+            const camisetaA = document.getElementById('equipoA_rojas').value;
+            const camisetaB = document.getElementById('equipoB_rojas').value;
+            
+            if (isNaN(camisetaA) || isNaN(camisetaB)) {
+                mostrarAlerta('Error', 'Los números de camiseta deben ser valores numéricos', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function mostrarConfirmacionRegistro() {
+            // Obtener datos del formulario
+            const datos = obtenerDatosFormulario();
+            
+            // Crear mensaje de confirmación
+            const mensajeConfirmacion = `
+                ¿Está seguro de que desea registrar los siguientes resultados?
+                
+                EQUIPO A:
+                - Goles: ${datos.equipoA.goles}
+                - Anotador: ${datos.equipoA.anotador}
+                - Camiseta: ${datos.equipoA.camiseta}
+                
+                EQUIPO B:
+                - Goles: ${datos.equipoB.goles}
+                - Anotador: ${datos.equipoB.anotador}
+                - Camiseta: ${datos.equipoB.camiseta}
+                
+                Estado: ${datos.estado}
+                
+                Resultado final: ${datos.equipoA.goles} - ${datos.equipoB.goles}
+            `;
+            
+            // Mostrar confirmación personalizada
+            if (confirm(mensajeConfirmacion)) {
+                registrarResultados(datos);
+            } else {
+                mostrarAlerta('Cancelado', 'El registro ha sido cancelado', 'info');
+            }
+        }
+
+        function obtenerDatosFormulario() {
+            return {
+                equipoA: {
+                    goles: document.getElementById('equipoA_goles').value,
+                    anotador: document.getElementById('equipoA_amarillas').value,
+                    camiseta: document.getElementById('equipoA_rojas').value
+                },
+                equipoB: {
+                    goles: document.getElementById('equipoB_goles').value,
+                    anotador: document.getElementById('equipoB_amarillas').value,
+                    camiseta: document.getElementById('equipoB_rojas').value
+                },
+                estado: document.getElementById('estado').options[document.getElementById('estado').selectedIndex].text
+            };
+        }
+
+        function registrarResultados(datos) {
+            // Simular envío de datos al servidor
+            console.log('Registrando resultados:', datos);
+            
+            // Mostrar animación de carga
+            mostrarCargando();
+            
+            // Simular tiempo de procesamiento
+            setTimeout(() => {
+                // Guardar en localStorage para persistencia (solo para demostración)
+                const resultadosPrevios = JSON.parse(localStorage.getItem('resultadosGuardados') || '[]');
+                resultadosPrevios.push({
+                    ...datos,
+                    fecha: new Date().toLocaleString(),
+                    id: Date.now()
+                });
+                localStorage.setItem('resultadosGuardados', JSON.stringify(resultadosPrevios));
+                
+                // Ocultar carga
+                ocultarCargando();
+                
+                // Mostrar mensaje de éxito
+                mostrarAlerta('¡Éxito!', 'Los resultados se han registrado correctamente', 'success');
+                
+                // Opcional: Redirigir después de un tiempo
+                setTimeout(() => {
+                    if (confirm('¿Desea volver a la página de partidos programados?')) {
+                        window.location.href = 'tablaParPen.html';
+                    }
+                }, 2000);
+                
+            }, 1500);
+        }
+
+        function actualizarResultado() {
+            const golesA = document.getElementById('equipoA_goles').value || 0;
+            const golesB = document.getElementById('equipoB_goles').value || 0;
+            
+            // Podrías mostrar el resultado en tiempo real en algún elemento
+            console.log(`Resultado actual: ${golesA} - ${golesB}`);
+        }
+
+        function mostrarCargando() {
+            // Crear overlay de carga
+            const overlay = document.createElement('div');
+            overlay.id = 'cargandoOverlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                color: white;
+                font-size: 1.2rem;
+            `;
+            
+            overlay.innerHTML = `
+                <div style="text-align: center;">
+                    <div class="spinner-border text-light mb-3" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                    <p>Registrando resultados...</p>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+        }
+
+        function ocultarCargando() {
+            const overlay = document.getElementById('cargandoOverlay');
+            if (overlay) {
+                overlay.remove();
+            }
+        }
+
+        function mostrarAlerta(titulo, mensaje, tipo) {
+            // Crear alerta personalizada
+            const alertaDiv = document.createElement('div');
+            alertaDiv.className = `alert alert-${tipo === 'error' ? 'danger' : tipo === 'success' ? 'success' : 'info'} alert-dismissible fade show`;
+            alertaDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                min-width: 300px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            `;
+            
+            // Icono según el tipo
+            let icono = '';
+            if (tipo === 'success') icono = 'fa-check-circle';
+            else if (tipo === 'error') icono = 'fa-exclamation-circle';
+            else icono = 'fa-info-circle';
+            
+            alertaDiv.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas ${icono} me-2 fs-5"></i>
+                    <div>
+                        <strong>${titulo}</strong>
+                        <div class="small">${mensaje}</div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(alertaDiv);
+            
+            // Auto-eliminar después de 5 segundos
+            setTimeout(() => {
+                if (alertaDiv.parentNode) {
+                    alertaDiv.remove();
+                }
+            }, 5000);
+        }
+
+        // Función adicional para ver resultados guardados (útil para desarrollo)
+        function verResultadosGuardados() {
+            const resultados = JSON.parse(localStorage.getItem('resultadosGuardados') || '[]');
+            console.log('Resultados guardados:', resultados);
+            alert(`Hay ${resultados.length} resultados guardados en el almacenamiento local. Revisa la consola para más detalles.`);
+        }
+
+        // Exponer función globalmente para debugging (opcional)
+        window.verResultadosGuardados = verResultadosGuardados;
+    </script>
+</body>
+</html>
