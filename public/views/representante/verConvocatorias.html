@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TorNet - Convocatorias actuales</title>
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="logo">TorNet</div>
+        <a href="/views/representante/representante.html" class="btn-header">Inicio</a>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-container">
+        <h1 class="gestion-title">Convocatorias actuales</h1>
+        <p class="gestion-subtitle">Explora las convocatorias abiertas y decide si deseas inscribirte</p>
+
+        <div id="convocatorias-container" class="convocatorias-grid">
+            <!-- Las tarjetas de convocatorias se generarán dinámicamente -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>TorNet</p>
+        <div class="icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Obtener torneos desde el mismo endpoint que usa TorActuales.html
+            fetch('/api/tournaments/current')
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Error al obtener torneos');
+                    }
+                    return res.json();
+                })
+                .then(torneos => {
+                    const container = document.getElementById('convocatorias-container');
+
+                    if (!torneos || torneos.length === 0) {
+                        container.innerHTML = '<p>No hay convocatorias activas en este momento.</p>';
+                        return;
+                    }
+
+                    torneos.forEach(torneo => {
+                        const card = document.createElement('div');
+                        card.classList.add('convocatoria-card');
+
+                        card.innerHTML = `
+                            <img src="/uploads/${torneo.convocatoriaArchivo}" alt="${torneo.nombreTorneo}" class="convocatoria-image">
+                            <h3 class="convocatoria-title">${torneo.nombreTorneo} / ${torneo.categoria}</h3>
+                            <button class="btn-tornet" onclick="inscribirse(${torneo.idTorneo})">Inscribirse</button>
+                        `;
+
+                        container.appendChild(card);
+                    });
+                })
+                .catch(err => {
+                    console.error('Error al cargar torneos:', err);
+                    const container = document.getElementById('convocatorias-container');
+                    container.innerHTML = '<p>Error al cargar los torneos.</p>';
+                });
+        });
+
+        function inscribirse(idTorneo) {
+            alert(`Te has inscrito en el torneo con ID: ${idTorneo}`);
+            // Aquí se conectará con el backend para gestionar la inscripción
+        }
+    </script>
+</body>
+</html>

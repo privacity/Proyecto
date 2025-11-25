@@ -8,5 +8,7 @@ router.get('/current', tournamentController.getCurrentTournaments);
 router.get('/list', tournamentController.listTournaments);
 router.get('/:id', tournamentController.getTournamentById);
 router.put('/:id', tournamentController.updateTournament);
+router.get('/convocatorias', tournamentController.getActiveConvocatorias); // Nueva ruta para obtener convocatorias activas
+router.post('/inscribir/:id', tournamentController.inscribirEquipo); // Nueva ruta para inscribir equipos
 
 module.exports = router;

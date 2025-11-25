@@ -83,6 +83,15 @@ CREATE TABLE Notificacion (
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE
 );
 
+CREATE TABLE Inscripcion (
+    idInscripcion INT AUTO_INCREMENT PRIMARY KEY,
+    idEquipo INT NOT NULL,
+    idTorneo INT NOT NULL,
+    fechaRegistro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idEquipo) REFERENCES Equipo(idEquipo),
+    FOREIGN KEY (idTorneo) REFERENCES Torneo(idTorneo)
+);
+
 ALTER TABLE Equipo
 ADD CONSTRAINT fk_equipo_capitan
 FOREIGN KEY (idCapitan) REFERENCES Jugador(idJugador);

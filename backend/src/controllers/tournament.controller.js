@@ -89,6 +89,59 @@ const TournamentController = {
             console.error('Error al actualizar el torneo:', err);
             res.status(500).json({ error: 'Error interno del servidor' });
         }
+    },
+
+    async getActiveConvocatorias(req, res) {
+        try {
+            const convocatorias = await knex('Torneo')
+                .select('idTorneo', 'nombreTorneo', 'categoria', 'sede', 'fechaInicio', 'fechaFin', 'convocatoriaArchivo')
+                .whereIn('estadoTorneo', ['Planificacion', 'EnCurso']);
+
+            if (convocatorias.length === 0) {
+                return res.status(404).json({ error: 'No hay convocatorias activas.' });
+            }
+
+            res.json(convocatorias);
+        } catch (err) {
+            console.error('Error al obtener convocatorias activas:', err);
+            res.status(500).json({ error: 'Error interno del servidor.' });
+        }
+    },
+
+    async inscribirEquipo(req, res) {
+        try {
+            const { id } = req.params; // ID de la convocatoria
+            const { idEquipo } = req.body; // ID del equipo que se inscribe
+
+            // Validar que la convocatoria exista y esté activa
+            const convocatoria = await knex('Torneo')
+                .where('idTorneo', id)
+                .whereIn('estadoTorneo', ['Planificacion', 'EnCurso'])
+                .first();
+
+            if (!convocatoria) {
+                return res.status(404).json({ error: 'Convocatoria no encontrada o no activa.' });
+            }
+
+            // Validar que el equipo exista
+            const equipo = await knex('Equipo').where('idEquipo', idEquipo).first();
+
+            if (!equipo) {
+                return res.status(404).json({ error: 'Equipo no encontrado.' });
+            }
+
+            // Registrar la inscripción (puedes crear una tabla específica para inscripciones si es necesario)
+            await knex('Participacion').insert({
+                idEquipo,
+                idTorneo: id,
+                fechaRegistro: new Date()
+            });
+
+            res.status(201).json({ message: 'Equipo inscrito correctamente en la convocatoria.' });
+        } catch (err) {
+            console.error('Error al inscribir equipo:', err);
+            res.status(500).json({ error: 'Error interno del servidor.' });
+        }
     }
 };
 
